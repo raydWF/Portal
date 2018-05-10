@@ -1,0 +1,55 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ roomkey.room_name }}</h1>
+
+  <p><strong>Description:</strong> {{ roomkey.room_des }}</p>
+  <p><strong>Number of Keys:</strong> {{ roomkey.keyinstance_set.all.count }}</p> 
+  
+  <div style="margin-left:20px;margin-top:20px">
+    
+    <button type='button' class='btn-lg'><a href="{% url 'roomkey-request' roomkey.pk %}">Request</a></button>
+
+
+    <h4>Copies</h4>
+    
+
+   <div>
+    {% if roomkey.keyinstance_set.all %}
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Room Key</th>
+          <th>Borrower</th>
+          <th>Status</th>
+          <th>Date Out</th>
+          <th>Date In</th>
+          <th>Key ID</th>
+        </tr>
+      </thead>
+
+      {% for copy in roomkey.keyinstance_set.all %}
+     
+      <tr>
+          <td>{{ copy.roomkey }} {{ forloop.counter }}</td>
+          <td>{{ copy.keyrequest.borrower }}</td>
+          <td>{{ copy.get_status_display }}</td>
+          <td>{{ copy.date_out }}</td>
+          <td>{{ copy.due_back }}</td>
+          <td>{{ copy.id }}</td>
+      </tr>
+       
+ 
+      {% endfor %}
+
+      </table>
+
+    
+    {% else %}
+      <p>There are no keys for this room.</p>
+    {% endif %} 
+  </div>
+
+  </div>
+{% endblock %}

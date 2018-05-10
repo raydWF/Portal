@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="content-title">
+      <h1>Key List</h1>
+  </div>
+   
+  <div class="split" style="width: 600px">
+    <div class = 'centered'>
+        <h3>INTSRUCTINOS ON HOW TO CHECK OUT A KEY</h3>
+    </div>
+   </div>
+
+    <div class="split">
+    <div class = 'centered'>
+    {% if roomkey_list %}
+    <div class="vertical-menu">
+
+      {% for roomkey in roomkey_list %}
+
+        <a href="{{ roomkey.get_absolute_url }}">{{ roomkey.room_name }} ({{ roomkey.room_des }}) - Keys: {{ roomkey.keyinstance_set.all.count }}</a>
+
+      {% endfor %}
+
+    </div>
+    {% else %}
+      <p>There are no keys in the library.</p>
+    {% endif %}
+    </div>
+   </div>
+    
+{% endblock %}

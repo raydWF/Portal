@@ -1,0 +1,106 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+
+<title> WF - Operations </title>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h2>Operations Service Portal</h2> 
+  <p>See below for available resources and services</p>
+</div>
+   
+<div class="row">
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+	        <div class="thumbnail image-content">
+	           	<img src="https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450" alt="LOCKERS">
+	           
+             <span><h2 class="text-over-image">LOCKERS</h2></span>
+	        </div>
+	      </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+	        <div class="thumbnail image-content">
+	           	<img src="https://images.unsplash.com/photo-1502445450262-e8ac19d23f19?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+	           
+             <h2 class="text-over-image">PROJECTORS</h2>
+	        </div>
+	      </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'keys' %}">
+	        <div class="thumbnail image-content">
+	           	<img src="https://images.unsplash.com/photo-1485761954900-f9a29f318567?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+	           
+             <h2 class="text-over-image">KEYS</h2>
+	        </div>
+	      </a>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">ROOMS</h2>
+          </div>
+        </a>
+      </div>
+       <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'maintenance-home' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1487861212986-608f621b0370?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">MAINTENANCE</h2>
+          </div>
+        </a>
+      </div>
+      
+     <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'move-home' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1498423281417-af8aff4579dc?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">MOVE REQUEST</h2>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1494352970903-9e3043c6b57e?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">SERVICE</h2>
+          </div>
+      </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1503681355143-d5485eea7f14?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">SUPPLIES</h2>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <a href="{% url 'under_construction' %}">
+          <div class="thumbnail image-content">
+              <img src="https://images.unsplash.com/photo-1457305237443-44c3d5a30b89?dpr=2&fit=crop&fm=jpg&h=825&q=50&w=1450">
+              
+              <h2 class="text-over-image">IT</h2>
+          </div>
+        </a>
+      </div> 
+
+</div>
+
+
+{% endblock %}
+

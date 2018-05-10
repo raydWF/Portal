@@ -1,0 +1,150 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container maintenance-container">
+<div class="row" >
+	<div class="maintenance-title" ">
+    	<h1 class="mainrow">Move Requests</h1>
+    	<h4 class="maintenance-under">View and submit all move requests here</h4>
+	</div>
+</div>
+
+
+	{% if moverequest_list %}
+		<div class="col-lg-12">
+			<table class="table table-hover maintenance-tables bgreen" id="moveTable">
+			<thead>
+				<tr>
+					<th>Move Person</th>
+					<th>Move Location</th>
+					<th>Date</th>
+					<th>Conditions</th>
+					<th>Requested by</th>
+					<!-- <th>Delete</th> -->
+	    		</tr>
+			</thead>
+			{% for request in moverequest_list %}
+			     
+				<tr id="filledData">
+					<td>{{ request.move_person }}</td>
+					<td>{{ request.move_to }}</td>
+					<td>{{ request.move_date }}</td>
+					<td>{{ request.move_conditions }}</td>
+					<td>{{ request.requested_by }}</td>
+					<!-- <td></td> -->
+				</tr>     
+			{% endfor %}
+		<form action="" method="post">
+				 {% csrf_token %}
+				<tr>
+					<td><input type="text" name="person" size="10"></td>
+					<td><input type="text" name="location" size="12"></td>
+					<td><input type="date" name="date" ></td>
+					<td><input type="text" name="condition" size="15"></td>
+					<td><input type="text" name="requester" size="10"></td>
+					<!-- <td><a class="deleteClass" id="deleteClass"><i class="material-icons">clear</i></a></td> -->
+				</tr>
+		
+			</table>
+
+			<div class="col-lg-12">
+				<div class="col-lg-4">
+					<button class="btn-lg btn-block" type="button" id="moveAddButton">Add Request</button>
+				</div>
+
+				<div class="col-lg-4">
+					<button class="btn-lg btn-block" type="button" id="deleteClass">Delete Last</button>
+				</div>
+
+				<div class="col-lg-4">
+					<button class="btn-lg btn-block" type="Submit" value="Submit">Submit</button>
+				</div>
+				
+			</div>
+		</form>
+	</div>  
+	{% endif %}
+
+
+</div>
+
+
+
+<script type="text/javascript">
+
+
+
+	function addField(argument) {
+		var moveTable = document.getElementById("moveTable");
+		var currentIndex = moveTable.rows.length;
+		var currentRow = moveTable.insertRow(-1);
+
+        var personBox = document.createElement("input");
+        personBox.setAttribute("name", "person" + currentIndex);
+        personBox.setAttribute("size", "10");
+
+        var locationBox = document.createElement("input");
+        locationBox.setAttribute("name", "location" + currentIndex);
+        locationBox.setAttribute("size", "12");
+
+        var dateBox = document.createElement("input");
+        dateBox.setAttribute("name", "date" + currentIndex);
+        dateBox.setAttribute("type", "date");
+
+        var conditionBox = document.createElement("input");
+        conditionBox.setAttribute("name", "condition" + currentIndex);
+        conditionBox.setAttribute("size", "15");
+
+        var requestBox = document.createElement("input");
+        requestBox.setAttribute("name", "requester" + currentIndex);
+        requestBox.setAttribute("size", "10");
+
+        // var deleteBox = document.createElement("a");
+        // deleteBox.innerHTML = '<i class="material-icons">clear</i>';
+        // deleteBox.setAttribute("class", "deleteClass");
+        // deleteBox.setAttribute("id", "deleteClass");
+
+        var currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(personBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(locationBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(dateBox);
+
+        currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(conditionBox);
+
+    	currentCell = currentRow.insertCell(-1);
+        currentCell.appendChild(requestBox);
+
+        // currentCell = currentRow.insertCell(-1);
+        // currentCell.appendChild(deleteBox);
+
+	}
+
+	document.getElementById("moveAddButton").addEventListener("click", addField);
+
+	var filledCount = $("tr[id^=filledData]").length;
+	
+	function deleteThis() {
+		var moveTable = document.getElementById("moveTable");
+		var rowCount = moveTable.rows.length;
+	
+		if (rowCount > filledCount + 2) {
+				moveTable.deleteRow(rowCount -1);
+		}	
+	}
+
+	document.getElementById("deleteClass").addEventListener("click", deleteThis);
+
+	// var classname = document.getElementsByClassName("deleteClass");
+
+	// for (var i = 0; i < classname.length; i++){
+	// 	classname[i].addEventListener("click", deleteThis);
+	// }
+
+</script>
+
+{% endblock %}

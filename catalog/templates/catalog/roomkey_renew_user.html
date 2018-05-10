@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+    <h1>Renew: {{keyinst.roomkey}}</h1>
+    <p>Borrower: {{keyinst.borrower}}</p>
+    <p{% if keyinst.is_overdue %} class="text-danger"{% endif %}>Due date: {{keyinst.due_back}}</p>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Submit" />
+    </form>
+
+{% endblock %}

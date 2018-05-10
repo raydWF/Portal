@@ -1,0 +1,57 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+	<h2 id='changeme'>Key request</h2>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			
+				<form action="" method="post">
+				    {% csrf_token %}
+				    <table>
+				        {{ form.as_table }}
+				    </table>
+				    <p><input required id="checkBox" type="checkbox" onclick="validate()"> I accept the <a href="{% url 'key-agreement'%}">terms and conditions</a></p>
+                    <p id="text" style="display:none">You Have Agreed To the Terms and Conditions</p>
+				    <p><input type="submit" value="Submit"></p>
+				</form>
+	
+		</div>	
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		document.getElementById("changeme").style.color = "blue"
+		// 1. Use event listener to listen when "approved" is selected from the form.status
+
+		// 2. Automatically search for first available keyinstance under the selected roomkey
+			// for loop (all keyinstances under roomkey) with if statement to check status == available
+
+		// 3. Select the available keyinstance
+		// 4. Change form information to change the status of the keyinstance to "on-loan" and select the "key-request" field as the current key request
+			// auto complete the date approved, user, borrower fields upon clicking submit
+
+
+		// JavaScript used for autofill functionality while Django/Python ModelForm will be used for data validation 
+
+	});
+	
+	function validate() {
+        var checkBox = document.getElementById("checkBox");
+        var text = document.getElementById("text");
+        if (checkBox.checked == true){
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+    }
+
+</script>
+
+{% endblock %}

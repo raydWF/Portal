@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container maintenance-container">
+	
+
+	<div class="row" >
+		<div class="maintenance-title" ">
+			<h1 class="mainrow">MAINTENANCE</h1>
+			<h4 class="maintenance-under">View and submit all maintenance requests here</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4 col-sm-6 mainpanel">
+			<div class="mainpanelcontent bgreen">
+				<a href="{% url 'completed-maintenance' %}" class="maintenance-link">
+					<h4>Complete</h4>
+					<p class="maintenance-under" style="white-space: nowrap;">See completed maintenance requests</p>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-4 col-sm-6 mainpanel">
+			<div class="mainpanelcontent bblue">
+				<a href="{% url 'wip-maintenance' %}" class="maintenance-link">		
+					<h4>Pending</h4>
+					<p class="maintenance-under">See pending maintenance requests</p>
+				</a>
+			</div>		
+		</div>
+		<div class="col-lg-4 col-sm-6 mainpanel">
+			<div class="mainpanelcontent bred">
+				<a href="{% url 'maintenance_create' %}" class="maintenance-link">		
+					<h4>Create</h4>
+					<p class="maintenance-under">Submit a new maintenance request</p>
+				</a>
+			</div>		
+		</div>
+	</div>
+
+
+	<div class="row">
+		
+		<div class="col-lg-4">
+			<div class="mainpanelcontent bgreen">
+				{% if maintenancerequest_list %}
+					<span>
+						<h1 class="numberstat">{{ maintenancerequest_list.count }} <i class="material-icons ispeaker">speaker_notes</i></h1>
+					</span>
+					
+					<p class="maintenance-under">Total requests</p>
+				{% else %}
+					<h4>Can't find data :(</h4>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="col-lg-8">
+			<div class="mainpanelcontent bblue">
+				<h3>Placeholder for either: </h3>
+				<h3 style="color: rgba(0, 0, 0, 0.4);">1. Request per Month bar graph</h3>
+				<br>
+				<h3 style="color: rgba(0, 0, 0, 0.4);">2. Complete vs Pending status bar</h3>
+				
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+{% endblock %}

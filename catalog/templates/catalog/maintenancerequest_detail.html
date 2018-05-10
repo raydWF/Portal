@@ -1,0 +1,94 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div class="container maintenance-container">
+	
+
+	<div class="row" >
+		<div class="maintenance-title" ">
+			<h1 class="mainrow">MAINTENANCE</h1>
+			<h4 class="maintenance-under2">View and submit all maintenance requests here</h4>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="mainpanel col-lg-12">
+			<div class="mainpanelcontent bdblue">
+				<div class="content-title">
+					<h3>Request #{{ maintenancerequest.pk }}</h3>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Status &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.get_status_display }}</p>
+					</div>
+				</div>
+
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Urgency &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.get_urgency_display }}</p>
+					</div>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Location &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.get_office_display }}</p>
+					</div>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Last Updated &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.date_completed }}</p>
+					</div>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Date Submitted &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.date_submitted }}</p>
+					</div>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Requested by &nbsp;</h4>
+					</div>
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.requester }}</p>
+					</div>
+				</div>
+				<div class="container-inline mainpanelcontent">
+					<div class="col-lg-4">
+						<h4>Request Details &nbsp;</h4>
+					</div>
+
+					<div class="col-lg-6">
+						<p class="maintenance-under2">{{ maintenancerequest.request_comments }}</>
+					</div>
+				</div>
+				
+				<div class="container-inline mainpanelcontent" >
+					<div class="col-lg-2 page-button ">
+						<a href="{% url 'maintenancerequest_update' maintenancerequest.pk %}" class="maintenance-link"><h4>Update</h4></a>
+					</div>
+					<div class="col-lg-10"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}

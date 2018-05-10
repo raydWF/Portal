@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Key Request #{{ keyrequest.pk }}</h1>
+
+<p>Request for: {{ keyrequest.roomkey }}</p>
+<p>Available keys: </p>
+
+<br>
+	
+<p>Requested by: {{ keyrequest.requester }}</p>
+
+<p>Borrower: {{ keyrequest.borrower }}</p>
+
+<p>Request Status: {{ keyrequest.get_request_status_display }}</p>
+
+<p>Date Requested: {{ keyrequest.date_requested }}</p>
+
+<p>Request Comments: {{ keyrequest.request_comments }}</p>
+
+
+<br>
+
+
+<p>Assigned key: {{ keyrequest.keyinstance }}</p>
+
+<p>Key Status: {{ keyrequest.keyinstance.get_status_display }}</p>
+
+<p>Date Assigned: {{ keyrequest.keyinstance.due_back }}</p>
+
+<p>Return Date: {{ keyrequest.keyinstance.date_out }}</p>
+
+<div>
+	<a href="{% url 'key-request-update' keyrequest.pk %}"><h4>Update</h4></a>
+</div>
+
+{% endblock %}

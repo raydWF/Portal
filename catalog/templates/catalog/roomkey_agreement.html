@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h3>Key Holder's Agreement</h3>
+
+<p>I  <b>{{ user.get_username }}</b> acknowledge receipt of the keys designated above and agree to the following terms.</p>
+
+<p>1. The key described herein remains the property of WalterFedy/AEC Developments</p>
+ 
+<p>2. The key is entrusted to me for my exclusive use. I will not duplicate, loan, transfer, exchange, misuse, modify, alter, or otherwise allow its use or possession by any other person</p>
+ 
+<p>3. I will report its loss, theft, or destruction immediately to my department</p>
+ 
+<p>4. If this key becomes lost, stolen, or not available for return, I will pay the key replacement charge</p>
+ 
+<p>5. Upon employment termination or request from team leader, I will return the key promptly, in person, and only to operations</p>
+
+<p>Signed by: <b>{{ user.get_username }}</b>
+
+<p>Date: {% now "jS F Y H:i" %}</p>
+
+
+
+{% endblock %}

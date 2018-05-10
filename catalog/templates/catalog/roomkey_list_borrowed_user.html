@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Borrowed keys</h1>
+
+	{% if keyinstance_list %}
+	<ul>
+		{% for roomkey in keyinstance_list %}
+			<li>
+				<a href="{% url 'roomkey-detail' roomkey.roomkey.pk %}">{{ roomkey.roomkey }}</a> ({{ roomkey.due_back }}) - {{ roomkey.id }}
+			</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<p>There are no keys borrowed.</p>
+	{% endif %}	
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ <div>
+    {% if keyrequest_list %}
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Room</th>
+          <th>Requester</th>
+          <th>Borrower</th>
+          <th>Status</th>
+          <th>Date Requested</th>
+          <th>Comments</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+
+      {% for request in keyrequest_list %}
+     
+      <tr>
+         <td>{{ request.roomkey }}</td>
+         <td>{{ request.requester }}</td>
+         <td>{{ request.borrower }}</td>
+         <td>{{ request.get_request_status_display }}</td>
+         <td>{{ request.date_requested }}</td>
+         <td>{{ request.request_comments }}</td>
+         <td><a href="{{ request.get_absolute_url }}">See more</a></td>
+      </tr>
+       
+ 
+      {% endfor %}
+
+      </table>
+
+    
+    {% else %}
+      <p>There are key requests.</p>
+    {% endif %} 
+  </div>
+
+
+{% endblock %}
