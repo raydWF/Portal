@@ -3,7 +3,7 @@ branch-defaults:
     environment: null
     group_suffix: null
 global:
-  application_name: Project
+  application_name: groot
   branch: null
   default_ec2_keyname: aws-eb3
   default_platform: Python 3.6
