@@ -72,7 +72,7 @@ class LoanedKeysByUserListView(LoginRequiredMixin,generic.ListView):
     template_name = 'catalog/roomkey_list_borrowed_user.html'
 
     def get_queryset(self):
-        return KeyInstance.objects.filter(requester=self.request.user).filter(status__exact='o').order_by('date_out')
+        return KeyInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 
 class LoanedKeysAllListView(PermissionRequiredMixin,generic.ListView):
     
