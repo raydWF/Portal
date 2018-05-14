@@ -25,7 +25,7 @@ SECRET_KEY = 'f8bt830rq(a)z970*9a+l4ryq#4f@on*w#b-h782qogplwi0x2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['groot-dev.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

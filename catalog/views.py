@@ -111,7 +111,7 @@ class KeyRequestDetailView(generic.DetailView):
 @permission_required('catalog.can_mark_returned')
 def renew_key_user(request, pk):
     """
-    View function for renewing a specific BookInstance by librarian
+    View function for renewing a specific keyInstance by admin
     """
     key_inst=get_object_or_404(KeyInstance, pk = pk)
 

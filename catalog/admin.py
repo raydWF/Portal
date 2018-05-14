@@ -12,7 +12,7 @@ class RoomKeyAdmin(admin.ModelAdmin):
 
 @admin.register(KeyInstance)
 class KeyInstanceAdmin(admin.ModelAdmin):
-	list_display = ('roomkey', 'keyrequest', 'status', 'date_out', 'due_back', 'key_notes', 'id')
+	list_display = ('roomkey', 'keyrequest', 'status', 'date_out', 'borrower','due_back', 'key_notes', 'id')
 
 	list_filter = ('roomkey', 'status','due_back')
 
