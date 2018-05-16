@@ -4,35 +4,34 @@
 
 <h1>Key Request #{{ keyrequest.pk }}</h1>
 
-<p>Request for: {{ keyrequest.roomkey }}</p>
-<p>Available keys: </p>
+<p>Request for: <strong>{{ keyrequest.roomkey }}</strong></p>
 
 <br>
 	
-<p>Requested by: {{ keyrequest.requester }}</p>
+<p>Requested by: <strong>{{ keyrequest.requester }}</strong></p>
 
-<p>Borrower: {{ keyrequest.borrower }}</p>
+<p>Borrower: <strong>{{ keyrequest.borrower }}</strong></p>
 
-<p>Request Status: {{ keyrequest.get_request_status_display }}</p>
+<p>Request Status: <strong>{{ keyrequest.get_request_status_display }}</strong></p>
 
-<p>Date Requested: {{ keyrequest.date_requested }}</p>
+<p>Date Requested: <strong>{{ keyrequest.date_requested }}</strong></p>
 
-<p>Request Comments: {{ keyrequest.request_comments }}</p>
+<p>Request Comments: <strong>{{ keyrequest.request_comments }}</strong></p>
 
 
 <br>
 
 
-<p>Assigned key: {{ keyrequest.keyinstance }}</p>
+<p>Assigned key: <strong>{{ num_key_available }}</strong></p>
 
-<p>Key Status: {{ keyrequest.keyinstance.get_status_display }}</p>
+<p>Key Status: <strong>{{ keyrequest.keyinstance.id }}</strong></p>
 
-<p>Date Assigned: {{ keyrequest.keyinstance.due_back }}</p>
-
-<p>Return Date: {{ keyrequest.keyinstance.date_out }}</p>
+<p>Return Date: <strong> {{ keyrequest.date_due_back }}</strong></p>
 
 <div>
+{% if user.is_staff %}
 	<a href="{% url 'key-request-update' keyrequest.pk %}"><h4>Update</h4></a>
+{% endif %}
 </div>
 
 {% endblock %}

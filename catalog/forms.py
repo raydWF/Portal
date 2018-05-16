@@ -16,7 +16,7 @@ class RenewKeyForm(forms.Form):
         if data < datetime.date.today():
             raise ValidationError(_('Invalid date - renewal in past'))
 
-        #Check date is in range librarian allowed to change (+4 weeks).
+        #Check date is in range admin allowed to change (+4 weeks).
         if data > datetime.date.today() + datetime.timedelta(weeks=4):
             raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
 

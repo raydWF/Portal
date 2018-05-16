@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse #Used to generate URLs by reversing the URL patterns
 from django.contrib.auth.models import User
 from datetime import date
+from datetime import timedelta
 import uuid # Required for unique book instances
 
 # Create your models here.
@@ -39,7 +40,7 @@ class KeyInstance(models.Model):
     Model representing key instances.
     """
     roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True) 
-    keyrequest = models.OneToOneField('KeyRequest', verbose_name='Key requests', on_delete=models.SET_NULL, null=True, blank=True)
+    keyrequest = models.OneToOneField('KeyRequest', verbose_name='Key requests', on_delete=models.SET_NULL, null=True, blank=True,)
 
     LOAN_STATUS = (
         ('a', 'Available'),
@@ -84,7 +85,7 @@ class KeyRequest(models.Model):
     """
     Model that will hold the key requests
     """
-    roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True) 
+    roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True)
 
     requester = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Requested by')
     
@@ -100,6 +101,7 @@ class KeyRequest(models.Model):
     request_status = models.CharField(max_length=1, choices=REQUEST_STATUS, default='p', verbose_name='Request status', blank=True)
 
     date_requested = models.DateField(auto_now_add=True)
+    date_due_back = models.DateField(default=(date.today() + timedelta(weeks=2)))
     date_completed = models.DateField(null=True, blank=True)
     
     request_comments =  models.TextField(max_length=2000, help_text='Enter a brief reason for the request')

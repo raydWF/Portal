@@ -16,9 +16,11 @@
     {% if roomkey_list %}
     <div class="vertical-menu">
 
-      {% for roomkey in roomkey_list %}
+      {%  for roomkey in roomkey_list %}
 
-        <a href="{{ roomkey.get_absolute_url }}">{{ roomkey.room_name }} ({{ roomkey.room_des }}) - Keys: {{ roomkey.keyinstance_set.all.count }}</a>
+        <a href="{{ roomkey.get_absolute_url }}">{{ roomkey.room_name }} ({{ roomkey.room_des }}) - Keys In Total: {{ roomkey.keyinstance_set.all.count }}
+        Keys Available: <strong>{{ roomkey.available_keys_count }}</strong>
+        </a>
 
       {% endfor %}
 

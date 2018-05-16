@@ -14,7 +14,7 @@ from django.shortcuts import render_to_response
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
-
+from django.db.models import Count, Case, When, CharField
 
 
 # Create your views here.
@@ -52,9 +52,24 @@ class KeyListView(generic.ListView):
     fields = '__all__'
     template_name = 'catalog/roomkey_list.html'
 
+    def get_queryset(self):
+        return RoomKey.objects.annotate(
+            available_keys_count=Count(Case(
+                When(keyinstance__status='a', then=1),
+                output_field=CharField(),
+            )))
+
+
     
 class KeyDetailView(generic.DetailView):
     model = RoomKey
+
+    def get_queryset(self):
+        return RoomKey.objects.annotate(
+            available_keys_count=Count(Case(
+                When(keyinstance__status='a', then=1),
+                output_field=CharField(),
+            )))
 
 # view for making a key request
 class KeyRequestCreate(CreateView):
@@ -99,6 +114,8 @@ class KeyRequestDetailView(generic.DetailView):
     model = KeyRequest
     template_name = "catalog/roomkey_request_detail.html"
 
+
+
     def RequestDetail(request):
         num_keyinstances_available = KeyInstance.objects.filter(status__exact='a').count()
 
@@ -107,13 +124,18 @@ class KeyRequestDetailView(generic.DetailView):
             'key-request-detail',
             context = {'num_key_available':num_keyinstances_available},
         )
+
+# def KeyRequestDetailView(request,pk):
+#     context = {"num_keyinstances_available" : KeyInstance.objects.filter(status__exact='a').count(),'pk':pk}
+#     return render(request,'catalog/roomkey_request_detail.html',context)
+
         
 @permission_required('catalog.can_mark_returned')
 def renew_key_user(request, pk):
     """
     View function for renewing a specific keyInstance by admin
     """
-    key_inst=get_object_or_404(KeyInstance, pk = pk)
+    key_inst=get_object_or_404(KeyInstance, pk=pk)
 
     # If this is a POST request then process the Form data
     if request.method == 'POST':
