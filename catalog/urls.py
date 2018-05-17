@@ -26,6 +26,8 @@ urlpatterns += [
 
 	path('key/<uuid:pk>/renew/', views.renew_key_user, name='renew-key-user'),
 
+	path('key/<uuid:pk>/loan/', views.loan_key_user, name='loan-key-user'),
+
 	path('borrowedKeys/', views.LoanedKeysAllListView.as_view(), name='all-borrowed-keys'),
 
 	path('key/agreement', views.KeyAgreement, name='key-agreement'),
@@ -35,6 +37,8 @@ urlpatterns += [
 	path('keys/request/<int:pk>', views.KeyRequestDetailView.as_view(), name='key-request-detail'),
 
 	path('keys/request/<int:pk>/update', views.KeyRequestUpdate.as_view(), name='key-request-update'),
+
+	path('keys/request/available',views.AllAvailableKeysView.as_view(),name='all-available-keys')
 
 ]
 

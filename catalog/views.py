@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import ContextMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -15,6 +16,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 from django.db.models import Count, Case, When, CharField
+from django.views.generic.edit import ProcessFormView
+
+
 
 
 # Create your views here.
@@ -64,6 +68,10 @@ class KeyListView(generic.ListView):
 class KeyDetailView(generic.DetailView):
     model = RoomKey
 
+    """
+	Shows the number of available keys. Accessable 
+	through the available_key_count	variable
+	"""
     def get_queryset(self):
         return RoomKey.objects.annotate(
             available_keys_count=Count(Case(
@@ -98,6 +106,16 @@ class LoanedKeysAllListView(PermissionRequiredMixin,generic.ListView):
     def get_queryset(self):
         return KeyInstance.objects.filter(status__exact='o').order_by('due_back')
 
+
+class AllAvailableKeysView(PermissionRequiredMixin, generic.ListView):
+    model = KeyInstance
+    permission_required = 'catalog.can_mark_returned'
+    template_name = 'catalog/roomkey-all-available.html'
+
+    def get_queryset(self):
+        return KeyInstance.objects.filter(status__exact='a')
+
+
 class KeyRequestListView(PermissionRequiredMixin, generic.ListView):
     model = KeyRequest
     permission_required = 'catalog.can_mark_returned'
@@ -106,9 +124,11 @@ class KeyRequestListView(PermissionRequiredMixin, generic.ListView):
 class KeyRequestUpdate(UpdateView):
     model = KeyRequest
     inline_model = KeyInstance
-    fields = ['request_status', 'request_comments', ]
+    fields = ['request_status', 'request_comments']
     # initial = {'due_back': datetime.date.today()}
     template_name = 'catalog/roomkey_request_form.html'
+    success_url = '/catalog/keys'
+
 
 class KeyRequestDetailView(generic.DetailView):
     model = KeyRequest
@@ -125,9 +145,6 @@ class KeyRequestDetailView(generic.DetailView):
             context = {'num_key_available':num_keyinstances_available},
         )
 
-# def KeyRequestDetailView(request,pk):
-#     context = {"num_keyinstances_available" : KeyInstance.objects.filter(status__exact='a').count(),'pk':pk}
-#     return render(request,'catalog/roomkey_request_detail.html',context)
 
         
 @permission_required('catalog.can_mark_returned')
@@ -158,6 +175,38 @@ def renew_key_user(request, pk):
         form = RenewKeyForm(initial={'renewal_date': proposed_renewal_date,})
 
     return render(request, 'catalog/roomkey_renew_user.html', {'form': form, 'keyinst':key_inst})
+
+
+@permission_required('catalog.can_mark_returned')
+def loan_key_user(request, pk):
+    """
+    View function for renewing a specific keyInstance by admin
+    """
+    key_inst=get_object_or_404(KeyInstance, pk=pk)
+
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+
+        # Create a form instance and populate it with data from the request (binding):
+        form = LoanKeyForm(request.POST)
+
+        # Check if the form is valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+            key_inst.status = 'o'
+            key_inst.save()
+
+            # redirect to a new URL:
+            return HttpResponseRedirect(reverse('all-available-keys') )
+    else:
+        form = LoanKeyForm(initial={'status': True,})
+
+    # If this is a GET (or any other method) create the default form.
+
+
+    return render(request, 'catalog/roomkey_loan_user.html', {'form': form, 'keyinst':key_inst})
+
+
 
 def add_poll(request):
     if request.POST():

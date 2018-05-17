@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from datetime import date
 from datetime import timedelta
 import uuid # Required for unique book instances
-
+from django.utils.deconstruct import deconstructible
 # Create your models here.
-
+@deconstructible
 class RoomKey(models.Model):
     """
     Model representing rooms
@@ -35,7 +35,10 @@ class RoomKey(models.Model):
         """
         return '{0}'.format(self.room_name)
 
+
+@deconstructible
 class KeyInstance(models.Model):
+
     """
     Model representing key instances.
     """
@@ -85,6 +88,15 @@ class KeyRequest(models.Model):
     """
     Model that will hold the key requests
     """
+
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular request")
+
+    # keyinstance = models.OneToOneField(
+    #     KeyInstance,
+    #     on_delete=models.CASCADE,
+    #     primary_key=True,
+    #     default=KeyInstance(roomkey=RoomKey(room_name='Grand River'),status='a')
+    # )
     roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True)
 
     requester = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Requested by')

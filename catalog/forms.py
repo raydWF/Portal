@@ -23,6 +23,19 @@ class RenewKeyForm(forms.Form):
         # Remember to always return the cleaned data.
         return data
 
+
+class LoanKeyForm(forms.Form):
+    status = forms.BooleanField()
+
+    def update_status(self):
+        data = self.cleaned_data['status']
+
+        # Check date is not in past.
+        if not data :
+            raise ValidationError(_('Please Checkmark if you want to rent the key'))
+
+        return data
+
 class KeyInstanceForm(forms.ModelForm):
     class Meta:
         model = KeyInstance
