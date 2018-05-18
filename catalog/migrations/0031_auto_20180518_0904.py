@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='keyinstance',
             name='borrower',
-            field=models.CharField(default='testing', help_text='Enter the name of the borrower.', max_length=100, verbose_name='Borrower'),
+            field=models.CharField(blank=True, help_text='Enter the name of the borrower.', max_length=100, null=True,
+                                   verbose_name='Borrower'),
         ),
-        
+
     ]
