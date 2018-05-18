@@ -128,17 +128,17 @@
       <find>requester</find>
       <find>can_ma</find>
       <find>permissions</find>
-      <find>class Loa</find>
+      <find />
       <find>user</find>
       <find>Meta</find>
       <find>roomkey.key</find>
-      <find>Date In</find>
+      <find />
       <find>renew</find>
       <find>roomkey_req</find>
       <find>views.Loan</find>
       <find>objects.filt</find>
       <find>get_obje</find>
-      <find>if req</find>
+      <find />
       <find>KeyRequest</find>
       <find>Key</find>
       <find>user.is</find>
@@ -189,7 +189,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
