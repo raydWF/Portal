@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1854dbef-df29-4989-b775-bfce960150ea" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/catalog/migrations/0031_auto_20180518_0904.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/migrations/0031_auto_20180518_0904.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog/migrations/0032_auto_20180518_0904.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog/migrations/0033_auto_20180518_0911.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/catalog/migrations/0034_remove_keyinstance_keyrequest.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/migrations/0032_remove_keyinstance_keyrequest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -76,7 +78,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0031_auto_20180518_0904.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="0031_auto_20180518_0904.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catalog/migrations/0031_auto_20180518_0904.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -85,20 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="0033_auto_20180518_0911.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../0033_auto_20180518_0911.py">
+      <file leaf-file-name="0032_remove_keyinstance_keyrequest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/catalog/migrations/0032_remove_keyinstance_keyrequest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="143" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="143" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="keyinstance_request_update.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/keyinstance_request_update.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="136">
+              <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -123,17 +116,17 @@
       <find>requester</find>
       <find>can_ma</find>
       <find>permissions</find>
-      <find />
+      <find>class Loa</find>
       <find>user</find>
       <find>Meta</find>
       <find>roomkey.key</find>
-      <find />
+      <find>Date In</find>
       <find>renew</find>
       <find>roomkey_req</find>
       <find>views.Loan</find>
       <find>objects.filt</find>
       <find>get_obje</find>
-      <find />
+      <find>if req</find>
       <find>KeyRequest</find>
       <find>Key</find>
       <find>user.is</find>
@@ -172,6 +165,7 @@
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html" />
         <option value="$PROJECT_DIR$/catalog/models.py" />
         <option value="$PROJECT_DIR$/catalog/migrations/0031_auto_20180518_0904.py" />
+        <option value="$PROJECT_DIR$/catalog/migrations/0034_remove_keyinstance_keyrequest.py" />
       </list>
     </option>
   </component>
@@ -184,7 +178,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1938" />
@@ -334,13 +328,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/locallibrary/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catalog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
@@ -689,16 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/migrations/0032_auto_20180518_0904.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/migrations/0033_auto_20180518_0911.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="10" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../0033_auto_20180518_0911.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -710,6 +687,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/migrations/0032_auto_20180518_0904.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/migrations/0033_auto_20180518_0911.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="10" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/migrations/0032_remove_keyinstance_keyrequest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
         </state>
       </provider>
     </entry>
