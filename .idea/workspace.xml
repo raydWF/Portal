@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1854dbef-df29-4989-b775-bfce960150ea" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-available.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/base_generic.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/base_generic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-borrowed.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-borrowed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_requests_all.html" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/templates/catalog/roomkey_requests_all.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/catalog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/catalog/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,15 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="roomkey_list_borrowed_user.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey_list_borrowed_user.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="33" selection-start-column="33" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catalog/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -60,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roomkey_detail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="roomkey_detail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            <state relative-caret-position="119">
+              <caret line="7" column="86" lean-forward="true" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -104,6 +81,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
               <caret line="24" column="61" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/catalog/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1666">
+              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -186,7 +175,6 @@
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_form.html" />
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey_request_detail.html" />
         <option value="$PROJECT_DIR$/catalog/admin.py" />
-        <option value="$PROJECT_DIR$/catalog/models.py" />
         <option value="$PROJECT_DIR$/catalog/templates/base_generic.html" />
         <option value="$PROJECT_DIR$/catalog/templates/catalog/keyinstance_request_update.html" />
         <option value="$PROJECT_DIR$/catalog/urls.py" />
@@ -197,6 +185,7 @@
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-borrowed.html" />
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-available.html" />
         <option value="$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html" />
+        <option value="$PROJECT_DIR$/catalog/models.py" />
       </list>
     </option>
   </component>
@@ -210,10 +199,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -315,7 +304,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -324,8 +313,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32897604" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32905984" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.25381264" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12686567" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.33190882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15973154" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -653,16 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey_list_borrowed_user.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -697,13 +676,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-borrowed.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/keyinstance_request_update.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -721,13 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-available.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="61" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey_requests_all.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -737,8 +702,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="119">
+          <caret line="7" column="86" lean-forward="true" selection-start-line="7" selection-start-column="86" selection-end-line="7" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-borrowed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/templates/catalog/roomkey-all-available.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="61" selection-start-line="24" selection-start-column="61" selection-end-line="24" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/catalog/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1666">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

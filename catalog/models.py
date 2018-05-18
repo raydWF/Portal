@@ -42,8 +42,7 @@ class KeyInstance(models.Model):
     """
     Model representing key instances.
     """
-    roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True) 
-    keyrequest = models.OneToOneField('KeyRequest', verbose_name='Key requests', on_delete=models.SET_NULL, null=True, blank=True,)
+    roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True)
 
     LOAN_STATUS = (
         ('a', 'Available'),
