@@ -1,5 +1,5 @@
 from django import forms
-
+from django.forms import ModelForm
 from .models import *
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -23,10 +23,38 @@ class RenewKeyForm(forms.Form):
         # Remember to always return the cleaned data.
         return data
 
+
+class UpdateKeyRequestForm(ModelForm):
+
+    class Meta:
+        model = KeyInstance
+        fields = ['request_status','status']
+
+    due_date = forms.DateField(help_text='Enter a date (YYYY-MM-DD) between now and 4 weeks (default 3). ')
+
+    def clean_due_date(self):
+        due_date = self.cleaned_data['due_date']
+        approved_status = self.cleaned_data['request_status']
+        availablity = self.cleaned_data['status']
+
+        # Check date is not in past.
+        if due_date < datetime.date.today():
+            raise ValidationError(_('Invalid date - renewal in past'))
+        if due_date > datetime.date.today() + datetime.timedelta(weeks=4):
+            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+        if approved_status == 'a' and availablity != 'o' :
+            raise ValidationError(_('Please Mark Key Status To ON LOAN if you would like to approve'))
+
+
+
+
+        return due_date,approved_status,availablity
+
 class KeyInstanceForm(forms.ModelForm):
     class Meta:
         model = KeyInstance
-        exclude = ('roomkey', 'id')
+        exclude = ('key_notes',)
+
 
 class KeyRequestForm(forms.ModelForm):
     class Meta:
@@ -68,3 +96,18 @@ class BaseMoveFormSet(BaseFormSet):
                 person = forms.cleaned_data['move_person']
                 location = forms.cleaned_data['move_to']
                 date = forms.cleaned_data['move_date']
+
+class UpdateKeyForm(forms.Form):
+    class Meta:
+        model = KeyInstance
+    borrower = forms.CharField(max_length=100,help_text="Enter the name of the borrower.")
+
+
+    def clean_renewal_date(self):
+
+
+        data = self.cleaned_data['borrower']
+
+        # Check date is not in past.
+        if data:
+            return data

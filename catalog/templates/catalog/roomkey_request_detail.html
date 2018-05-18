@@ -2,31 +2,26 @@
 
 {% block content %}
 
-<h1>Key Request #{{ keyrequest.pk }}</h1>
+<h1>Key Request #{{ keyinstance.pk }}</h1>
 
-<p>Request for: <strong>{{ keyrequest.roomkey }}</strong></p>
+<p>Request for: <strong>{{ keyinstance.roomkey }}</strong></p>
 
 <br>
-	
-<p>Requested by: <strong>{{ keyrequest.requester }}</strong></p>
 
-<p>Borrower: <strong>{{ keyrequest.borrower }}</strong></p>
+<p>Borrower: <strong>{{ keyinstance.borrower }}</strong></p>
 
-<p>Request Status: <strong>{{ keyrequest.get_request_status_display }}</strong></p>
+<p>Request Status: <strong>{{ keyinstance.get_request_status_display }}</strong></p>
 
-<p>Date Requested: <strong>{{ keyrequest.date_requested }}</strong></p>
+<p>Date Requested: <strong>{{ keyinstance.date_requested }}</strong></p>
 
-<p>Request Comments: <strong>{{ keyrequest.request_comments }}</strong></p>
+<p>Request Comments: <strong>{{ keyinstance.key_notes }}</strong></p>
 
 
 <br>
 
+<p>Key Status: <strong>{{ keyinstance.status }}</strong></p>
 
-<p>Assigned key: <strong>{{ num_key_available }}</strong></p>
-
-<p>Key Status: <strong>{{ keyrequest.keyinstance.id }}</strong></p>
-
-<p>Return Date: <strong> {{ keyrequest.date_due_back }}</strong></p>
+<p>Return Date: <strong> {{ keyinstance.date_due_back }}</strong></p>
 
 <div>
 {% if user.is_staff %}

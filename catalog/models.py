@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from datetime import date
 from datetime import timedelta
 import uuid # Required for unique book instances
-
+from django.utils.deconstruct import deconstructible
 # Create your models here.
-
+@deconstructible
 class RoomKey(models.Model):
     """
     Model representing rooms
@@ -35,7 +35,10 @@ class RoomKey(models.Model):
         """
         return '{0}'.format(self.room_name)
 
+
+@deconstructible
 class KeyInstance(models.Model):
+
     """
     Model representing key instances.
     """
@@ -55,9 +58,23 @@ class KeyInstance(models.Model):
     
     key_notes = models.CharField(max_length=2000, help_text='Key instance notes if applicable', null=True, blank=True)
 
+    is_requested = models.BooleanField(blank=True, default=False,help_text="Is this key being requested ?", verbose_name="Is requested")
+
+    REQUEST_STATUS = (
+        ('p', 'Pending'),
+        ('a', 'Approved'),
+        ('d', 'Denied'),
+    )
+
+
+    request_status = models.CharField(max_length=1, choices=REQUEST_STATUS, default='p', verbose_name='Request status',
+                                      blank=True)
+
+    date_requested = models.DateField(null=True,blank=True)
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular key")
 
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    borrower = models.CharField(max_length=100, help_text="Enter the name of the borrower.",null=True,blank=True, verbose_name="Borrower",)
 
     class Meta:
         ordering = ["due_back"]
@@ -85,6 +102,15 @@ class KeyRequest(models.Model):
     """
     Model that will hold the key requests
     """
+
+    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular request")
+
+    # keyinstance = models.OneToOneField(
+    #     KeyInstance,
+    #     on_delete=models.CASCADE,
+    #     primary_key=True,
+    #     default=KeyInstance(roomkey=RoomKey(room_name='Grand River'),status='a')
+    # )
     roomkey = models.ForeignKey('RoomKey',verbose_name="Room", on_delete=models.SET_NULL, null=True)
 
     requester = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Requested by')

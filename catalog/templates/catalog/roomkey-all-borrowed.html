@@ -1,20 +1,52 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>All Borrowed Keys</h1>
 
+ <div>
     {% if keyinstance_list %}
-    <ul>
 
-      {% for keyinst in keyinstance_list %} 
-      <li class="{% if keyinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'roomkey-detail' keyinst.roomkey.pk %}">{{keyinst.roomkey}}</a> ({{ keyinst.due_back }}) {% if user.is_staff %}- {{ keyinst.borrower }}{% endif %} {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-key-user' keyinst.id %}">Renew</a>  {% endif %}
-      </li>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Room</th>
+          <th>Borrower</th>
+          <th>Status</th>
+          <th>Date Loaned</th>
+          <th>Date Due</th>
+          {% if user.is_staff %}
+          <th>Renew Request</th>
+          <th>Mark Returned</th>
+          {% endif %}
+
+        </tr>
+      </thead>
+
+      {% for key in keyinstance_list %}
+
+
+      <tr>
+         <td>{{ key.roomkey }}</td>
+         <td>{{ key.borrower }}</td>
+         <td>{{ key.get_status_display }}</td>
+         <td>{{ key.date_out }}</td>
+         <td>{{ key.due_back }}</td>
+         {% if user.is_staff %}
+         <td><a href="{% url 'renew-key-user' key.id %}">Renew</a></td>
+         <td><a href="{% url 'renew-key-user' key.id %}">Return</a></td>
+         {% endif %}
+
+      </tr>
+
+
       {% endfor %}
-    </ul>
+
+      </table>
+
 
     {% else %}
-      <p>There are no keys borrowed.</p>
-    {% endif %}  
-         
+      <p>There are key requests.</p>
+    {% endif %}
+  </div>
+
+
 {% endblock %}

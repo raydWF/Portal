@@ -4,44 +4,37 @@
 
  <div>
     {% if keyinstance_list %}
-    
+
     <table class="table table-hover">
       <thead>
         <tr>
           <th>Room</th>
-          <th>Borrower</th>
           <th>Status</th>
-          <th>Date Requested</th>
-          {% if user.is_staff %}
-          <th>Update Request</th>
-          {% endif %}
+          <th>Make Request</th>
+
 
         </tr>
       </thead>
 
       {% for key in keyinstance_list %}
-          {% if key.is_requested %}
-     
+
+
       <tr>
          <td>{{ key.roomkey }}</td>
-         <td>{{ key.borrower }}</td>
          <td>{{ key.get_status_display }}</td>
-         <td>{{ key.date_requested }}</td>
-         {% if user.is_staff %}
-         <td><a href="{% url 'update-key-request' key.id %}">Update</a></td>
-         {% endif %}
+         <td><a href="{% url 'submit-key-request' key.id %}">Request</a></td>
+
 
       </tr>
-          {% endif %}
- 
+
       {% endfor %}
 
       </table>
 
-    
+
     {% else %}
       <p>There are key requests.</p>
-    {% endif %} 
+    {% endif %}
   </div>
 
 

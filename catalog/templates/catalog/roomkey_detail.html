@@ -11,7 +11,7 @@
     
     <button type='button' class='btn-lg'>
         {% if roomkey.available_keys_count > 0 %}
-        <a href="{% url 'roomkey-request' roomkey.pk %}">Request</a>
+        <a href="{% url 'all-available-keys' %}">Request</a>
         {% endif %}
     </button>
 

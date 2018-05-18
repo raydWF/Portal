@@ -73,14 +73,15 @@
                   </div>
                   <div id="collapse1" class="panel-collapse collapse in">
                     <ul class="list-group">
-                      <li class="sidebar-spacing"><a href="{% url 'keys' %}" class="sidebar-link">Keys</a></li>
+                      <li class="sidebar-spacing"><a href="{% url 'keys' %}" class="sidebar-link">Key Status</a></li>
                       <li class="sidebar-spacing"><a href="{% url 'maintenance-home' %}" class="sidebar-link">Maintenance</a></li>
                       <li class="sidebar-spacing"><a href="{% url 'move-home' %}" class="sidebar-link">Move Requests</a></li>
                       <li class="sidebar-spacing"><a href="{% url 'under_construction' %}" class="sidebar-link">Construction</a></li>
+                      <li class="sidebar-bottom"><a href="{% url 'all-available-keys' %}" class="sidebar-link">All Available Keys</a></li>
 
                         {% if user.is_staff %}
                           {% if perms.catalog.can_mark_returned %}
-                          <li class="sidebar-bottom"><a href="{% url 'all-borrowed-keys' %}" class="sidebar-link">All Keys</a></li>
+                          <li class="sidebar-bottom"><a href="{% url 'all-borrowed-keys' %}" class="sidebar-link">All Borrowed Keys</a></li>
                           <li class="sidebar-bottom"><a href="{% url 'all-requested-keys' %}" class='sidebar-link'>All Key Requests</a></li>
                           {% endif %}
                         {% endif %}
