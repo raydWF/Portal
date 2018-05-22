@@ -32,7 +32,7 @@
          <td>{{ key.due_back }}</td>
          {% if user.is_staff %}
          <td><a href="{% url 'renew-key-user' key.id %}">Renew</a></td>
-         <td><a href="{% url 'renew-key-user' key.id %}">Return</a></td>
+         <td><a href="{% url 'return-key-user' key.id %}">Return</a></td>
          {% endif %}
 
       </tr>

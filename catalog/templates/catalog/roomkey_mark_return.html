@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+{% block content %}
+
+    <div>
+
+        <p>
+            Please Check The Checkbox Below If You Would Like To Mark Key For <b> {{ keyinst.roomkey }} </b> Borrowed By <b> {{ keyinst.borrower }} </b> Returned
+        </p>
+
+    </div>
+    
+    <form action="" method="post">
+
+        {% csrf_token %}
+        <table>
+        {{ form }}
+        </table>
+        <input type="submit" value="Submit" />
+
+    </form>
+
+{% endblock %}

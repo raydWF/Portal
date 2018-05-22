@@ -50,6 +50,19 @@ class UpdateKeyRequestForm(ModelForm):
 
         return due_date,approved_status,availablity
 
+class KeyMarkReturnForm(forms.Form):
+
+    mark_returned = forms.BooleanField()
+
+
+    def validate_return(self):
+        status = self.cleaned_data['mark_returned']
+
+        if status != True:
+            raise ValidationError(_('Please Check Box If You Would Like To Mark Returned. '))
+        else:
+            pass
+
 class KeyInstanceForm(forms.ModelForm):
     class Meta:
         model = KeyInstance
@@ -100,7 +113,9 @@ class BaseMoveFormSet(BaseFormSet):
 class UpdateKeyForm(forms.Form):
     class Meta:
         model = KeyInstance
+
     borrower = forms.CharField(max_length=100,help_text="Enter the name of the borrower.")
+
 
 
     def clean_renewal_date(self):

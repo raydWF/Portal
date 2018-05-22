@@ -177,7 +177,7 @@ def renew_key_user(request, pk):
 
     return render(request, 'catalog/roomkey_renew_user.html', {'form': form, 'keyinst':key_inst})
 
-@permission_required('catalog.can_mark_returned')
+
 def submit_key_request(request, pk):
     """
     View function for renewing a specific keyInstance by admin
@@ -205,7 +205,7 @@ def submit_key_request(request, pk):
     # If this is a GET (or any other method) create the default form.
     else:
 
-        form = UpdateKeyForm(initial={'borrower': 'N/A',})
+        form = UpdateKeyForm(initial={'borrower': 'N/A'})
 
     return render(request, 'catalog/keyinstance_request_update.html', {'form': form, 'keyinst':key_inst})
 
@@ -228,11 +228,12 @@ def update_key_request(request, pk):
         if form.is_valid():
             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
             key_inst.status = 'o'
+            key_inst.is_requested = False
             key_inst.date_out = datetime.date.today()
             key_inst.save()
 
             # redirect to a new URL:
-            return HttpResponseRedirect(reverse('all-available-keys') )
+            return HttpResponseRedirect(reverse('all-available-keys'))
     else:
         form = UpdateKeyRequestForm(initial={'due_date': datetime.date.today()+datetime.timedelta(weeks=3)})
 
@@ -240,6 +241,27 @@ def update_key_request(request, pk):
 
     #return render(request, 'catalog/roomkey_request_update.html', {'form': form})
     return render(request, 'catalog/roomkey_request_update.html', {'form': form, 'keyinst': key_inst})
+
+
+@permission_required('catalog.can_mark_returned')
+def return_key_user(request,pk):
+    key_inst = get_object_or_404(KeyInstance, pk=pk)
+
+    if request.method == 'POST' :
+
+        form = KeyMarkReturnForm(request.POST)
+
+        if form.is_valid():
+            key_inst.status = 'a'
+            key_inst.save()
+
+            return HttpResponseRedirect(reverse('all-borrowed-keys'))
+    else:
+        form = KeyMarkReturnForm(initial={'mark_returned':False})
+
+    return render(request, 'catalog/roomkey_mark_return.html', {'form': form, 'keyinst':key_inst})
+
+
 
 
 

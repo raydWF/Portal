@@ -372,10 +372,6 @@ button{
 	color: rgba(0, 0, 0, 0.6);
 }
 
-#id_status {
-
-}
-
 /*====================================================KEY LIST==========================================================*/
 
 .split{
@@ -405,5 +401,12 @@ button{
 	height: 80px; /*change heigh on display*/
 }
 
+.wrapper {
+	text-align: center;
+}
+
+.centered {
+	display: inline-flex;
+}
 
 

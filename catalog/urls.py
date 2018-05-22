@@ -30,7 +30,7 @@ urlpatterns += [
 
     path('key/<uuid:pk>/update', views.update_key_request, name='update-key-request'),
 
-	#path('key/<uuid:pk>/loan/', views.loan_key_user, name='loan-key-user'),
+	path('key/<uuid:pk>/return/', views.return_key_user, name='return-key-user'),
 
 	path('borrowedKeys/', views.LoanedKeysAllListView.as_view(), name='all-borrowed-keys'),
 
