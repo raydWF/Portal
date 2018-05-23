@@ -30,7 +30,7 @@
           <th>Status</th>
           <th>Date Out</th>
           <th>Due Back</th>
-          <th>Key ID</th>
+          <th>Date Returned</th>
         </tr>
       </thead>
 
@@ -38,11 +38,11 @@
      
       <tr>
           <td>{{ copy.roomkey }} {{ forloop.counter }}</td>
-          <td>{{ copy.keyrequest.borrower }}</td>
+          <td>{{ copy.borrower }}</td>
           <td>{{ copy.get_status_display }}</td>
           <td>{{ copy.date_out }}</td>
           <td>{{ copy.due_back }}</td>
-          <td>{{ copy.id }}</td>
+          <td>{{ copy.date_returned }}</td>
       </tr>
        
  

@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -40,16 +41,16 @@
         <div class="collapse navbar-collapse" id="bs-nav-demo">
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-              <li class="navbar-align">User: {{ user.get_username }}</li>
-              <li> 
-                <span class="dropdown">
-                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">My Borrowed
-                  <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a href="{% url 'borrowed-keys' %}">My Keys</a></li>
-                  </ul>
-                </span>
-              </li>   
+              <li class="navbar-align">User: <b>{{ user.get_username }}</b></li>
+{#              <li> #}
+{#                <span class="dropdown">#}
+{#                  <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">My Borrowed#}
+{#                  <span class="caret"></span></button>#}
+{#                  <ul class="dropdown-menu">#}
+{#                    <li><a href="{% url 'borrowed-keys' %}">My Keys</a></li>#}
+{#                  </ul>#}
+{#                </span>#}
+{#              </li>   #}
               <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
             {% else %}
               <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
@@ -83,6 +84,7 @@
                           {% if perms.catalog.can_mark_returned %}
                           <li class="sidebar-bottom"><a href="{% url 'all-borrowed-keys' %}" class="sidebar-link">All Borrowed Keys</a></li>
                           <li class="sidebar-bottom"><a href="{% url 'all-requested-keys' %}" class='sidebar-link'>All Key Requests</a></li>
+                          <li class="sidebar-bottom"><a href="{% url 'all-keys-status' %}" class="sidebar-link">All Key Status</a> </li>
                           {% endif %}
                         {% endif %}
                     </ul>                
@@ -90,7 +92,7 @@
                   </div>
               </div>
 
-                     <li style="color: black;">User: {{ user.get_username }}</li>
+                     <li style="color: black;">User: <b>{{ user.get_username }}</b></li>
                      <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                   {% else %}
                      <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>

@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+ <div>
+    {% if keyinstance_list %}
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+
+          <th>Room</th>
+          <th>Status</th>
+          <th>Borrower</th>
+          <th>Date Borrowed</th>
+          <th>Due Back</th>
+          <th>Date Returned</th>
+
+        </tr>
+      </thead>
+
+      {% for key in keyinstance_list %}
+
+
+      <tr>
+         <td>{{ key.roomkey }}</td>
+         <td>{{ key.get_status_display }}</td>
+         <td>{{ key.borrower }}</td>
+         <td>{{ key.date_out }}</td>
+         <td {% if key.is_overdue %} class="text-danger"{% endif %}>{{ key.due_back }}</td>
+         <td>{{ key.date_returned }}</td>
+
+
+      </tr>
+
+      {% endfor %}
+
+      </table>
+
+
+    {% else %}
+      <p>There are key requests.</p>
+    {% endif %}
+  </div>
+
+
+{% endblock %}

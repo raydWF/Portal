@@ -63,6 +63,12 @@ class KeyListView(generic.ListView):
                 output_field=CharField(),
             )))
 
+class AllKeysStatus(generic.ListView):
+    model = KeyInstance
+    fields = '__all__'
+    template_name = 'catalog/keyinstance_all.html'
+
+
 
     
 class KeyDetailView(generic.DetailView):
@@ -121,6 +127,9 @@ class KeyRequestListView(PermissionRequiredMixin, generic.ListView):
     permission_required = 'catalog.can_mark_returned'
     template_name = 'catalog/roomkey_requests_all.html'
 
+    def get_queryset(self):
+        return  KeyInstance.objects.filter(status__exact='r')
+
 class KeyRequestUpdate(UpdateView):
     model = KeyRequest
     inline_model = KeyInstance
@@ -129,7 +138,6 @@ class KeyRequestUpdate(UpdateView):
     template_name = 'catalog/roomkey_request_form.html'
     success_url = '/catalog/keys'
 
-#class KeyUpdate()
 
 class KeyRequestDetailView(generic.DetailView):
     model = KeyInstance
@@ -173,7 +181,7 @@ def renew_key_user(request, pk):
     # If this is a GET (or any other method) create the default form.
     else:
         proposed_renewal_date = datetime.date.today() + datetime.timedelta(weeks=3)
-        form = RenewKeyForm(initial={'renewal_date': proposed_renewal_date,})
+        form = RenewKeyForm(initial={'renewal_date': proposed_renewal_date})
 
     return render(request, 'catalog/roomkey_renew_user.html', {'form': form, 'keyinst':key_inst})
 
@@ -227,19 +235,25 @@ def update_key_request(request, pk):
         # Check if the form is valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-            key_inst.status = 'o'
-            key_inst.is_requested = False
-            key_inst.date_out = datetime.date.today()
-            key_inst.save()
+            request_status = form.cleaned_data['request_status']
+            due_date = form.cleaned_data['due_date']
+            if request_status == 'a':
+                key_inst.due_back = due_date
+                key_inst.status = 'o'
+                key_inst.date_out = datetime.date.today()
+                key_inst.save()
+            else:
+                key_inst.status = 'a'
+                key_inst.save()
 
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('all-available-keys'))
     else:
-        form = UpdateKeyRequestForm(initial={'due_date': datetime.date.today()+datetime.timedelta(weeks=3)})
+        default_due_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = UpdateKeyRequestForm(initial={'due_date': default_due_date})
 
     #If this is a GET (or any other method) create the default form.
 
-    #return render(request, 'catalog/roomkey_request_update.html', {'form': form})
     return render(request, 'catalog/roomkey_request_update.html', {'form': form, 'keyinst': key_inst})
 
 
@@ -253,6 +267,7 @@ def return_key_user(request,pk):
 
         if form.is_valid():
             key_inst.status = 'a'
+            key_inst.date_returned = datetime.date.today()
             key_inst.save()
 
             return HttpResponseRedirect(reverse('all-borrowed-keys'))
@@ -265,17 +280,6 @@ def return_key_user(request,pk):
 
 
 
-def add_poll(request):
-    if request.POST():
-        keyinst_valid = KeyInstanceForm.is_valid()
-        keyreq_valid = KeyRequestForm.is_valid()
-
-        # we do this since 'and' short circuits and we want to check to whole page for form errors
-        if keyinst_valid and keyreq_valid:
-            KeyInstance = KeyInstanceForm.save()
-            KeyRequest = KeyRequestForm.save(commit=False)  
-       
-            return HttpResponseRedirect('all-requested-keys')
 
 
 # =================================== MAINTENANCE REQUESTS=============================================================

@@ -54,7 +54,7 @@ class KeyInstance(models.Model):
 
     date_out = models.DateField(null=True, blank=True, verbose_name="Date Issued")
     due_back = models.DateField(null=True, blank=True, verbose_name="Date to be returned")
-    date_returned = models.DateField(null=True, blank=True, verbose_name="Date to be returned")
+    date_returned = models.DateField(null=True, blank=True,verbose_name="Date that it has been returned")
     
     key_notes = models.CharField(max_length=2000, help_text='Key instance notes if applicable', null=True, blank=True)
 

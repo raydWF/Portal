@@ -15,6 +15,12 @@ body {
 	min-width: 400px;
 }
 
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	line-height: 1.78;
+}
+
 .title {
 	font-family: 'Raleway', sans-serif;
 }
@@ -409,4 +415,7 @@ button{
 	display: inline-flex;
 }
 
+.square-content{
+	padding-top: 60px;
+}
 

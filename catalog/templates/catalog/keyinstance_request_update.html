@@ -6,17 +6,20 @@
 
 
 
-
+<div class="square-box">
+    <div class="square-content">
     <form action="" method="post" >
 
         {% csrf_token %}
         <table style="display: inline-flex">
-        {{ form }}
+        {{ form}}
         </table>
         <p><input required id="checkBox" type="checkbox" onclick="validate()"> I accept the <a href="{% url 'key-agreement'%}">terms and conditions</a></p>
         <p id="text" style="display:none">You Have Agreed To the Terms and Conditions</p>
         <input type="submit" value="Submit" />
     </form>
+    </div>
+</div>
 
 </div>
 

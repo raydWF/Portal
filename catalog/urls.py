@@ -18,6 +18,8 @@ urlpatterns += [
 
 	path('keys/', views.KeyListView.as_view(), name='keys'),
 
+	path('keys/status',views.AllKeysStatus.as_view(),name = 'all-keys-status'),
+
 	path('key/<int:pk>/detail', views.KeyDetailView.as_view(), name='roomkey-detail'),
 
 	path('key/<int:pk>/request', views.KeyRequestCreate.as_view(), name='roomkey-request'),
