@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<<<<<<< HEAD
+
 
  <div>
     {% if keyinstance_list %}
@@ -38,23 +38,4 @@
     {% endif %}
   </div>
 
-
-=======
-    <h1>All Available Keys</h1>
-
-    {% if keyinstance_list %}
-    <ul>
-
-      {% for keyinst in keyinstance_list %} 
-      <li class="{% if keyinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'roomkey-detail' keyinst.roomkey.pk %}">{{keyinst.roomkey}}</a>  {% if perms.catalog.can_mark_returned %}- <a href="{% url 'loan-key-user' keyinst.id %}">Mark Loaned</a>  {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-
-    {% else %}
-      <p>There are no keys available.</p>
-    {% endif %}  
-         
->>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 {% endblock %}

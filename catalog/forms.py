@@ -26,7 +26,7 @@ class RenewKeyForm(forms.Form):
         return data
 
 
-<<<<<<< HEAD
+
 class UpdateKeyRequestForm(forms.Form):
 
     APPROVE_CHOICES = [
@@ -64,19 +64,7 @@ class KeyMarkReturnForm(forms.Form):
             raise ValidationError(_('Please Check Box If You Would Like To Mark Returned. '))
         else:
             pass
-=======
-class LoanKeyForm(forms.Form):
-    status = forms.BooleanField()
 
-    def update_status(self):
-        data = self.cleaned_data['status']
-
-        # Check date is not in past.
-        if not data :
-            raise ValidationError(_('Please Checkmark if you want to rent the key'))
-
-        return data
->>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 
 class KeyInstanceForm(forms.ModelForm):
     class Meta:
