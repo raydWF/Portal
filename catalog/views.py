@@ -186,7 +186,12 @@ def renew_key_user(request, pk):
     return render(request, 'catalog/roomkey_renew_user.html', {'form': form, 'keyinst':key_inst})
 
 
+<<<<<<< HEAD
 def submit_key_request(request, pk):
+=======
+@permission_required('catalog.can_mark_returned')
+def loan_key_user(request, pk):
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
     """
     View function for renewing a specific keyInstance by admin
     """
@@ -196,19 +201,28 @@ def submit_key_request(request, pk):
     if request.method == 'POST':
 
         # Create a form instance and populate it with data from the request (binding):
+<<<<<<< HEAD
         form = UpdateKeyForm(request.POST)
+=======
+        form = LoanKeyForm(request.POST)
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 
         # Check if the form is valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
+<<<<<<< HEAD
             key_inst.is_requested = True
             key_inst.status = 'r'
             key_inst.date_requested = datetime.date.today()
             key_inst.borrower = form.cleaned_data['borrower']
+=======
+            key_inst.status = 'o'
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
             key_inst.save()
 
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('all-available-keys') )
+<<<<<<< HEAD
 
     # If this is a GET (or any other method) create the default form.
     else:
@@ -280,6 +294,29 @@ def return_key_user(request,pk):
 
 
 
+=======
+    else:
+        form = LoanKeyForm(initial={'status': True,})
+
+    # If this is a GET (or any other method) create the default form.
+
+
+    return render(request, 'catalog/roomkey_loan_user.html', {'form': form, 'keyinst':key_inst})
+
+
+
+def add_poll(request):
+    if request.POST():
+        keyinst_valid = KeyInstanceForm.is_valid()
+        keyreq_valid = KeyRequestForm.is_valid()
+
+        # we do this since 'and' short circuits and we want to check to whole page for form errors
+        if keyinst_valid and keyreq_valid:
+            KeyInstance = KeyInstanceForm.save()
+            KeyRequest = KeyRequestForm.save(commit=False)  
+       
+            return HttpResponseRedirect('all-requested-keys')
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 
 
 # =================================== MAINTENANCE REQUESTS=============================================================

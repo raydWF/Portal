@@ -28,11 +28,15 @@ urlpatterns += [
 
 	path('key/<uuid:pk>/renew/', views.renew_key_user, name='renew-key-user'),
 
+<<<<<<< HEAD
 	path('key/<uuid:pk>/keyrequest/', views.submit_key_request, name='submit-key-request'),
 
     path('key/<uuid:pk>/update', views.update_key_request, name='update-key-request'),
 
 	path('key/<uuid:pk>/return/', views.return_key_user, name='return-key-user'),
+=======
+	path('key/<uuid:pk>/loan/', views.loan_key_user, name='loan-key-user'),
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 
 	path('borrowedKeys/', views.LoanedKeysAllListView.as_view(), name='all-borrowed-keys'),
 
@@ -44,9 +48,13 @@ urlpatterns += [
 
 	path('keys/request/<int:pk>/update', views.KeyRequestUpdate.as_view(), name='key-request-update'),
 
+<<<<<<< HEAD
 	path('keys/available',views.AllAvailableKeysView.as_view(),name='all-available-keys')
 
 
+=======
+	path('keys/request/available',views.AllAvailableKeysView.as_view(),name='all-available-keys')
+>>>>>>> 86395f9384a7dbe1e4fc9124bd32a34eeac8e6ba
 
 ]
 
