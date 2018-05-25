@@ -51,23 +51,23 @@ import os
 #     "is_superuser": "cn=superuser,ou=django,ou=groups,dc=example,dc=com"
 # }
 #
-# # This is the default, but I like to be explicit.
-# AUTH_LDAP_ALWAYS_UPDATE_USER = True
+# This is the default, but I like to be explicit.
+AUTH_LDAP_ALWAYS_UPDATE_USER = True
 #
 # # Use LDAP group membership to calculate group permissions.
 # AUTH_LDAP_FIND_GROUP_PERMS = True
 #
-# # Cache group memberships for an hour to minimize LDAP traffic
-# AUTH_LDAP_CACHE_GROUPS = True
-# AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
-#
-#
-# # Keep ModelBackend around for per-user permissions and maybe a local
-# # superuser.
-# AUTHENTICATION_BACKENDS = (
-#     'django_auth_ldap.backend.LDAPBackend',
-#     'django.contrib.auth.backends.ModelBackend',
-# )
+# Cache group memberships for an hour to minimize LDAP traffic
+AUTH_LDAP_CACHE_GROUPS = True
+AUTH_LDAP_GROUP_CACHE_TIMEOUT = 3600
+
+
+# Keep ModelBackend around for per-user permissions and maybe a local
+# superuser.
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
