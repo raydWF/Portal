@@ -99,7 +99,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog.apps.CatalogConfig',
     'django_extensions',
-    #'django_python3_ldap',
+    'django_python3_ldap',
    
 ]
 
