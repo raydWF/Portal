@@ -31,7 +31,7 @@ LDAP_AUTH_OBJECT_CLASS = "user"
 # Keep ModelBackend around for per-user permissions and maybe a local
 # superuser.
 AUTHENTICATION_BACKENDS = (
-    #'django_python3_ldap.auth.LDAPBackend',
+    'django_python3_ldap.auth.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 DEBUG = True
