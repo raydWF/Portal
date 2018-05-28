@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-# import ldap
-# from django_auth_ldap.config import LDAPSearch, GroupOfNamesType, NestedActiveDirectoryGroupType
-#
+
+
 # Baseline configuration.
 LDAP_AUTH_URL = "ldaps://172.20.200.30"
 #LDAP_AUTH_FORMAT_SEARCH_FILTERS = "path.to.your.custom_format_search_filters"
