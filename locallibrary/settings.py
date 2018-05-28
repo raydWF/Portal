@@ -14,20 +14,19 @@ import os
 # import ldap
 # from django_auth_ldap.config import LDAPSearch, GroupOfNamesType, NestedActiveDirectoryGroupType
 #
-# # Baseline configuration.
-# LDAP_AUTH_URL = "ldaps://172.20.200.30"
-# #LDAP_AUTH_FORMAT_SEARCH_FILTERS = "path.to.your.custom_format_search_filters"
-#
-# # The username and password that's being used to connect to the LDAP server to query data.
-# LDAP_AUTH_CONNECTION_USERNAME = 'rdeng'
-# LDAP_AUTH_CONNECTION_PASSWORD = 'In-faith2'
-#
-# # The LDAP search base for looking up users.
-# LDAP_AUTH_SEARCH_BASE = "dc=twfp,dc=com"
-# AUTH_LDAP_USER_SEARCH = LDAPSearch("dc=twfp,dc=com", ldap.SCOPE_SUBTREE, "(sAMAccountName=%(user)s)")
-#
-# # The LDAP class that represents a user.
-# LDAP_AUTH_OBJECT_CLASS = "user"
+# Baseline configuration.
+LDAP_AUTH_URL = "ldaps://172.20.200.30"
+#LDAP_AUTH_FORMAT_SEARCH_FILTERS = "path.to.your.custom_format_search_filters"
+
+# The username and password that's being used to connect to the LDAP server to query data.
+LDAP_AUTH_CONNECTION_USERNAME = 'rdeng'
+LDAP_AUTH_CONNECTION_PASSWORD = 'In-faith2'
+
+# The LDAP search base for looking up users.
+LDAP_AUTH_SEARCH_BASE = "dc=twfp,dc=com"
+
+# The LDAP class that represents a user.
+LDAP_AUTH_OBJECT_CLASS = "user"
 
 # Keep ModelBackend around for per-user permissions and maybe a local
 # superuser.
