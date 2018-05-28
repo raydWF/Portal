@@ -113,7 +113,7 @@ class LoanedKeysAllListView(PermissionRequiredMixin,generic.ListView):
         return KeyInstance.objects.filter(status__exact='o').order_by('due_back')
 
 
-class AllAvailableKeysView(PermissionRequiredMixin, generic.ListView):
+class AllAvailableKeysView(generic.ListView):
     model = KeyInstance
     permission_required = 'catalog.can_mark_returned'
     template_name = 'catalog/roomkey-all-available.html'
