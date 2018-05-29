@@ -34,6 +34,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 DEBUG = True
+LDAP_AUTH_RECEIVE_TIMEOUT = 2000,
 
 #LDAP_AUTH_USE_TLS = False
 
