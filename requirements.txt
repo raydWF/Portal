@@ -41,4 +41,3 @@ virtualenv==15.2.0
 virtualenv-clone==0.3.0
 virtualenvwrapper-win==1.2.5
 websocket-client==0.47.0
-lol==99999
