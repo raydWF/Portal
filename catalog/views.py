@@ -209,7 +209,6 @@ def submit_key_request(request, pk):
             key_inst.status = 'r'
             key_inst.date_requested = datetime.date.today()
             key_inst.borrower = form.cleaned_data['borrower']
-            key_inst.status = 'o'
             key_inst.save()
 
             # redirect to a new URL:
@@ -247,9 +246,11 @@ def update_key_request(request, pk):
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
                 key_inst.date_out = datetime.date.today()
+                key_inst.request_status = 'a'
                 key_inst.save()
             else:
                 key_inst.status = 'a'
+                key_inst.request_status = 'd'
                 key_inst.save()
 
             # redirect to a new URL:

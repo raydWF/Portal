@@ -47,7 +47,7 @@ class KeyInstance(models.Model):
     LOAN_STATUS = (
         ('a', 'Available'),
         ('o', 'On loan'),
-        ('r', 'Reserved'),
+        ('r', 'Requested'),
     )
 
     status = models.CharField(max_length=1, choices=LOAN_STATUS, help_text='Key availability', verbose_name="Key status", blank=True)
