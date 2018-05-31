@@ -37,7 +37,12 @@ class UpdateKeyRequestForm(forms.Form):
 
     request_status = forms.CharField(label='Please select to accept or deny this request.',widget=forms.Select(choices=APPROVE_CHOICES))
 
-    due_date = forms.DateField(help_text='Enter a date (YYYY-MM-DD) between now and 4 weeks (default 3). ')
+    due_date = forms.DateField(label='Due Date(If the request is approved)',
+                               help_text='Enter a date (YYYY-MM-DD) between now and 4 weeks (default 3). ')
+
+    notes = forms.CharField(label='Enter a brief note if you wish',widget=forms.Textarea)
+
+
 
     def clean_due_date(self):
         due_date = self.cleaned_data['due_date']

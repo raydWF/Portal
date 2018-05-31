@@ -35,7 +35,7 @@
 
       {%  for roomkey in roomkey_list %}
 
-        <a href="{{ roomkey.get_absolute_url }}">{{ roomkey.room_name }} ({{ roomkey.room_des }}) - Keys In Total: {{ roomkey.keyinstance_set.all.count }}
+        <a href="{{ roomkey.get_absolute_url }}"><b>{{ roomkey.room_name }}</b> ({{ roomkey.room_des }}) - Keys In Total: {{ roomkey.keyinstance_set.all.count }}
         Keys Available: <strong>{{ roomkey.available_keys_count }}</strong>
         </a>
 

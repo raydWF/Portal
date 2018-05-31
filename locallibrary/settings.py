@@ -14,8 +14,8 @@ import os
 
 
 # Baseline configuration.
-#LDAP_AUTH_URL = "ldaps://172.20.200.30"
-LDAP_AUTH_URL = "ldaps://207.34.240.56"
+LDAP_AUTH_URL = "ldaps://172.20.200.30"
+#LDAP_AUTH_URL = "ldaps://207.34.240.56"
 #LDAP_AUTH_FORMAT_SEARCH_FILTERS = "path.to.your.custom_format_search_filters"
 
 # The username and password that's being used to connect to the LDAP server to query data.
@@ -84,6 +84,14 @@ SECRET_KEY = 'f8bt830rq(a)z970*9a+l4ryq#4f@on*w#b-h782qogplwi0x2'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'raywalterfedy@gmail.com'
+EMAIL_HOST_PASSWORD = 'In-faith2'
+EMAIL_PORT = 567
+EMAIL_USE_TSL = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
 
 
 # Application definition
@@ -220,5 +228,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "www", "static")
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

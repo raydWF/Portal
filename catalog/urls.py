@@ -22,19 +22,15 @@ urlpatterns += [
 
 	path('key/<int:pk>/detail', views.KeyDetailView.as_view(), name='roomkey-detail'),
 
-	path('key/<int:pk>/request', views.KeyRequestCreate.as_view(), name='roomkey-request'),
-
 	path('mykeys/', views.LoanedKeysByUserListView.as_view(), name='borrowed-keys'),
 
 	path('key/<uuid:pk>/renew/', views.renew_key_user, name='renew-key-user'),
-
 
 	path('key/<uuid:pk>/keyrequest/', views.submit_key_request, name='submit-key-request'),
 
     path('key/<uuid:pk>/update', views.update_key_request, name='update-key-request'),
 
 	path('key/<uuid:pk>/return/', views.return_key_user, name='return-key-user'),
-
 
 	path('borrowedKeys/', views.LoanedKeysAllListView.as_view(), name='all-borrowed-keys'),
 
@@ -44,14 +40,7 @@ urlpatterns += [
 
 	path('keys/request/<int:pk>', views.KeyRequestDetailView.as_view(), name='key-request-detail'),
 
-	path('keys/request/<int:pk>/update', views.KeyRequestUpdate.as_view(), name='key-request-update'),
-
-
 	path('keys/available',views.AllAvailableKeysView.as_view(),name='all-available-keys')
-
-
-	#path('keys/request/available',views.AllAvailableKeysView.as_view(),name='all-available-keys')
-
 
 ]
 

@@ -17,6 +17,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 from django.db.models import Count, Case, When, CharField
 from django.views.generic.edit import ProcessFormView
+from django.core.mail import send_mail
+
 
 
 
@@ -51,6 +53,8 @@ def KeyAgreement(request):
     )
 # ===================================== KEYS ====================================================
 
+# The views for a list of rooms
+
 class KeyListView(generic.ListView):
     model = RoomKey
     fields = '__all__'
@@ -63,14 +67,13 @@ class KeyListView(generic.ListView):
                 output_field=CharField(),
             )))
 
+
 class AllKeysStatus(generic.ListView):
     model = KeyInstance
     fields = '__all__'
     template_name = 'catalog/keyinstance_all.html'
 
 
-
-    
 class KeyDetailView(generic.DetailView):
     model = RoomKey
 
@@ -78,6 +81,7 @@ class KeyDetailView(generic.DetailView):
 	Shows the number of available keys. Accessable 
 	through the available_key_count	variable
 	"""
+
     def get_queryset(self):
         return RoomKey.objects.annotate(
             available_keys_count=Count(Case(
@@ -85,16 +89,6 @@ class KeyDetailView(generic.DetailView):
                 output_field=CharField(),
             )))
 
-# view for making a key request
-class KeyRequestCreate(CreateView):
-    model = KeyRequest
-    fields = ['roomkey', 'requester', 'borrower', 'request_comments']
-    template_name = 'catalog/roomkey_request_form.html'
-
-class KeyAgreement111(CreateView):
-    model = KeyRequest
-    fields = ['roomkey', 'requester', 'borrower', 'request_comments']
-    template_name = 'catalog/roomkey_agreement.html'
 
 class LoanedKeysByUserListView(LoginRequiredMixin,generic.ListView):
     model = KeyInstance
@@ -130,13 +124,6 @@ class KeyRequestListView(PermissionRequiredMixin, generic.ListView):
     def get_queryset(self):
         return  KeyInstance.objects.filter(status__exact='r')
 
-class KeyRequestUpdate(UpdateView):
-    model = KeyRequest
-    inline_model = KeyInstance
-    fields = ['request_status', 'request_comments']
-    # initial = {'due_back': datetime.date.today()}
-    template_name = 'catalog/roomkey_request_form.html'
-    success_url = '/catalog/keys'
 
 
 class KeyRequestDetailView(generic.DetailView):
@@ -242,15 +229,26 @@ def update_key_request(request, pk):
             # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
             request_status = form.cleaned_data['request_status']
             due_date = form.cleaned_data['due_date']
+            key_notes = form.cleaned_data['notes']
             if request_status == 'a':
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
                 key_inst.date_out = datetime.date.today()
                 key_inst.request_status = 'a'
+                key_inst.key_notes = key_notes
                 key_inst.save()
             else:
                 key_inst.status = 'a'
                 key_inst.request_status = 'd'
+                key_inst.key_notes = key_notes
+
+                send_mail(
+                    'Key Request Response',
+                    'Here is the message.',
+                    'raywalterfedy@gmail.com',
+                    ['raywalterfedy@gmail.com'],
+                    fail_silently=False,
+                )
                 key_inst.save()
 
             # redirect to a new URL:
