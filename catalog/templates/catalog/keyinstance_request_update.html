@@ -11,16 +11,19 @@
     <form action="" method="post" >
 
         {% csrf_token %}
-        </br>
+        <p>Please select the person that will be borrowing the key</p>
+
+        <p>(try start typing your username once the dropdown is selected)</p>
         <select name = 'name' required>
         {% for key in names %}
+            {% if key.first_name %}
+            <option value="{{ key.first_name }}">{{ key.first_name }}</option>
+            {% else %}
             <option value="{{ key }}">{{ key }}</option>
+            {% endif %}
         {% endfor %}
         </select>
 
-        <p>
-            (Please use their login name i.e. <b>{{ user.get_username }}</b>)
-        </p>
         <p><input required id="checkBox" type="checkbox" onclick="validate()"> I accept the <a href="{% url 'key-agreement'%}">terms and conditions</a></p>
         <p id="text" style="display:none">You Have Agreed To the Terms and Conditions</p>
         <input type="submit" value="Submit" />
