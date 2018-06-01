@@ -26,11 +26,19 @@
 
 
       <tr>
+         {% if key.is_overdue %}
+         <td style="color: #cd0a0a">{{ key.roomkey }}</td>
+         <td style="color: #cd0a0a">{{ key.borrower }}</td>
+         <td style="color: #cd0a0a">{{ key.get_status_display }}</td>
+         <td style="color: #cd0a0a">{{ key.date_out }}</td>
+         <td style="color: #cd0a0a">{{ key.due_back }}</td>
+         {% else %}
          <td>{{ key.roomkey }}</td>
          <td>{{ key.borrower }}</td>
          <td>{{ key.get_status_display }}</td>
          <td>{{ key.date_out }}</td>
          <td>{{ key.due_back }}</td>
+         {% endif %}
          {% if user.is_staff %}
          <td><a href="{% url 'renew-key-user' key.id %}">Renew</a></td>
          <td><a href="{% url 'return-key-user' key.id %}">Return</a></td>
@@ -46,7 +54,7 @@
 
 
     {% else %}
-      <p>There are key requests.</p>
+      <p>There are no borrowed keys.</p>
     {% endif %}
   </div>
 

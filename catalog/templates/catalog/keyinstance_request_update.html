@@ -11,11 +11,15 @@
     <form action="" method="post" >
 
         {% csrf_token %}
-        <table style="display: inline-flex">
-        {{ form}}
-        </table>
+        </br>
+        <select name = 'name' required>
+        {% for key in names %}
+            <option value="{{ key }}">{{ key }}</option>
+        {% endfor %}
+        </select>
+
         <p>
-            (Please use their login name i.e. <b>jlee</b> or <b>bwashington</b>)
+            (Please use their login name i.e. <b>{{ user.get_username }}</b>)
         </p>
         <p><input required id="checkBox" type="checkbox" onclick="validate()"> I accept the <a href="{% url 'key-agreement'%}">terms and conditions</a></p>
         <p id="text" style="display:none">You Have Agreed To the Terms and Conditions</p>

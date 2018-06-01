@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,get_list_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 import datetime
 from .forms import *
@@ -179,35 +179,29 @@ def submit_key_request(request, pk):
     """
     View function for renewing a specific keyInstance by admin
     """
+
     key_inst=get_object_or_404(KeyInstance, pk=pk)
+    names = get_list_or_404(User)
 
     # If this is a POST request then process the Form data
     if request.method == 'POST':
+        name = request.POST['name']
 
-        # Create a form instance and populate it with data from the request (binding):
+        key_inst.is_requested = True
+        key_inst.status = 'r'
+        key_inst.date_requested = datetime.date.today()
+        key_inst.borrower = name
+        key_inst.save()
 
-        form = UpdateKeyForm(request.POST)
-
-
-        # Check if the form is valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required (here we just write it to the model due_back field)
-            key_inst.is_requested = True
-            key_inst.status = 'r'
-            key_inst.date_requested = datetime.date.today()
-            key_inst.borrower = form.cleaned_data['borrower']
-            key_inst.save()
-
-            # redirect to a new URL:
-            return HttpResponseRedirect(reverse('all-available-keys') )
+        return HttpResponseRedirect(reverse('all-available-keys') )
 
 
     # If this is a GET (or any other method) create the default form.
     else:
+        pass
 
-        form = UpdateKeyForm(initial={'borrower': 'N/A'})
 
-    return render(request, 'catalog/keyinstance_request_update.html', {'form': form, 'keyinst':key_inst})
+    return render(request, 'catalog/keyinstance_request_update.html', {'keyinst':key_inst, 'names':names})
 
 
 @permission_required('catalog.can_mark_returned')
@@ -230,6 +224,10 @@ def update_key_request(request, pk):
             request_status = form.cleaned_data['request_status']
             due_date = form.cleaned_data['due_date']
             key_notes = form.cleaned_data['notes']
+            email_subject = 'Key Request Response'
+            sender_email = 'service@walterfedy.com'
+            #receiver_email = form.cleaned_data[]
+            body_message = 'Sorry your keyrequest has been denied. Here are the keynotes: ' + key_notes
             if request_status == 'a':
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
@@ -243,9 +241,9 @@ def update_key_request(request, pk):
                 key_inst.key_notes = key_notes
 
                 send_mail(
-                    'Key Request Response',
-                    'Here is the message.',
-                    'raywalterfedy@gmail.com',
+                    email_subject,
+                    body_message,
+                    sender_email,
                     ['raywalterfedy@gmail.com'],
                     fail_silently=False,
                 )
