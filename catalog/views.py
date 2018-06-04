@@ -180,7 +180,7 @@ def submit_key_request(request, pk):
     View function for renewing a specific keyInstance by admin
     """
 
-    key_inst=get_object_or_404(KeyInstance, pk=pk)
+    key_inst = get_object_or_404(KeyInstance, pk=pk)
     names = get_list_or_404(User)
 
     # If this is a POST request then process the Form data
@@ -201,7 +201,7 @@ def submit_key_request(request, pk):
         pass
 
 
-    return render(request, 'catalog/keyinstance_request_update.html', {'keyinst':key_inst, 'names':names})
+    return render(request,'catalog/keyinstance_request_update.html',{'keyinst':key_inst, 'names':names})
 
 
 @permission_required('catalog.can_mark_returned')
