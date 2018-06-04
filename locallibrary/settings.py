@@ -110,7 +110,6 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'django_extensions',
     'django_python3_ldap',
-    'anymail',
 ]
 
 MIDDLEWARE = [
