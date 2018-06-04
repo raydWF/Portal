@@ -79,8 +79,12 @@
 				</div>
 				
 				<div class="container-inline mainpanelcontent" >
-					<div class="col-lg-2 page-button ">
+					<div class="col-lg-2 page-button " style=" border-style: solid; border-color: red;">
 						<a href="{% url 'maintenancerequest_update' maintenancerequest.pk %}" class="maintenance-link"><h4>Update</h4></a>
+					</div>
+
+                    <div class="col-lg-2 page-button " style=" border-style: solid; border-color: red;">
+						<a href="{% url 'maintenance-home' %}" class="maintenance-link"><h4>Back</h4></a>
 					</div>
 					<div class="col-lg-10"></div>
 				</div>

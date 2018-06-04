@@ -15,11 +15,11 @@
 
         <p>(try start typing your username once the dropdown is selected)</p>
         <select name = 'name' required>
-        {% for key in names %}
-            {% if key.first_name %}
-            <option value="{{ key.first_name }}">{{ key.first_name }}</option>
+        {% for person in names %}
+            {% if person.first_name %}
+            <option value="{{ person.first_name }} {{person.last_name}}">{{ person.first_name }} {{ person.last_name }}</option>
             {% else %}
-            <option value="{{ key }}">{{ key }}</option>
+            <option value="{{ person }}">{{ person }}</option>
             {% endif %}
         {% endfor %}
         </select>

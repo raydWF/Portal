@@ -6,9 +6,9 @@
 	
 
 	<div class="row" >
-		<div class="maintenance-title" ">
+		<div class="maintenance-title">
 			<h1 class="mainrow">MAINTENANCE</h1>
-			<h4 class="maintenance-under">View and submit all maintenance requests here</h4>
+			<h4 class="maintenance-under">View and update all maintenance requests here</h4>
 		</div>
 	</div>
 
@@ -46,7 +46,7 @@
 			<div class="mainpanelcontent bgreen">
 				{% if maintenancerequest_list %}
 					<span>
-						<h1 class="numberstat">{{ maintenancerequest_list.count }} <i class="material-icons ispeaker">speaker_notes</i></h1>
+						<h1 class="numberstat">{{ maintenancerequest_list.count }} </h1>
 					</span>
 					
 					<p class="maintenance-under">Total requests</p>
@@ -56,15 +56,15 @@
 			</div>
 		</div>
 
-		<div class="col-lg-8">
-			<div class="mainpanelcontent bblue">
-				<h3>Placeholder for either: </h3>
-				<h3 style="color: rgba(0, 0, 0, 0.5);">1. Request per Month bar graph</h3>
-				<br>
-				<h3 style="color: rgba(0, 0, 0, 0.4);">2. Complete vs Pending status bar</h3>
-				
-			</div>
-		</div>
+{#		<div class="col-lg-8">#}
+{#			<div class="mainpanelcontent bblue">#}
+{#				<h3>Placeholder for either: </h3>#}
+{#				<h3 style="color: rgba(0, 0, 0, 0.5);">1. Request per Month bar graph</h3>#}
+{#				<br>#}
+{#				<h3 style="color: rgba(0, 0, 0, 0.4);">2. Complete vs Pending status bar</h3>#}
+{#				#}
+{#			</div>#}
+{#		</div>#}
 	</div>
 
 

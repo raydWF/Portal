@@ -227,7 +227,7 @@ def update_key_request(request, pk):
             email_subject = 'Key Request Response'
             sender_email = 'service@walterfedy.com'
             #receiver_email = form.cleaned_data[]
-            body_message = 'Sorry your keyrequest has been denied. Here are the keynotes: ' + key_notes
+            body_message = 'Sorry your key request has been denied. Here are the keynotes: ' + key_notes
             if request_status == 'a':
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
@@ -317,11 +317,12 @@ class MaintenanceRequestDetailView(generic.DetailView):
 # view for creating maintenacne request
 class MaintenanceRequestCreate(CreateView):
     model = MaintenanceRequest
-    fields = ['requester', 'office', 'urgency', 'status', 'request_comments']
+    fields = ['requester', 'office', 'urgency', 'request_comments']
 
 class MaintenanceRequestUpdate(UpdateView):
     model = MaintenanceRequest
     fields = ['status', 'date_completed', 'request_comments']
+    template_name = 'catalog/maintenancerequest_update.html'
     initial = {'date_completed': datetime.date.today()}
 
 

@@ -9,7 +9,7 @@ from django.forms.formsets import BaseFormSet
 #====================================================================== Key Forms ===================================================================
     
 class RenewKeyForm(forms.Form):
-    renewal_date = forms.DateField(help_text="Enter a date (YYYY-MM-DD) between now and 4 weeks (default 3).")
+    renewal_date = forms.DateField(help_text="Enter a date (YYYY-MM-DD)(default 3).")
 
     def clean_renewal_date(self):
         data = self.cleaned_data['renewal_date']
@@ -18,9 +18,6 @@ class RenewKeyForm(forms.Form):
         if data < datetime.date.today():
             raise ValidationError(_('Invalid date - renewal in past'))
 
-        #Check date is in range admin allowed to change (+4 weeks).
-        if data > datetime.date.today() + datetime.timedelta(weeks=4):
-            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
 
         # Remember to always return the cleaned data.
         return data
@@ -38,7 +35,7 @@ class UpdateKeyRequestForm(forms.Form):
     request_status = forms.CharField(label='Please select to accept or deny this request.',widget=forms.Select(choices=APPROVE_CHOICES))
 
     due_date = forms.DateField(label='Due Date(If the request is approved)',
-                               help_text='Enter a date (YYYY-MM-DD) between now and 4 weeks (default 3). ')
+                               help_text='Enter a date (YYYY-MM-DD)(default 3). ')
 
     notes = forms.CharField(label='Enter a brief note if you wish',widget=forms.Textarea)
 
@@ -50,8 +47,7 @@ class UpdateKeyRequestForm(forms.Form):
          #Check date is not in past.
         if due_date < datetime.date.today():
             raise ValidationError(_('Invalid date - renewal in past'))
-        if due_date > datetime.date.today() + datetime.timedelta(weeks=4):
-            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
+
 
 
         return due_date

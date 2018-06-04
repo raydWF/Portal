@@ -84,12 +84,15 @@ SECRET_KEY = 'f8bt830rq(a)z970*9a+l4ryq#4f@on*w#b-h782qogplwi0x2'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'raywalterfedy@gmail.com'
-EMAIL_HOST_PASSWORD = 'In-faith2'
-EMAIL_PORT = 587
-EMAIL_USE_TSL = True
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# ANYMAIL = {
+#     # (exact settings here depend on your ESP...)
+#     "MAILGUN_API_KEY": "pubkey-a5a1eff74626a7c40573440bf17d5d89",
+#     "MAILGUN_SENDER_DOMAIN": 'sandboxfe61ab6d0c29495c9aa4dcf470890409.mailgun.org',  # your Mailgun domain, if needed
+# }
+# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
+# DEFAULT_FROM_EMAIL = "noreply@walterfedy.com"  # if you don't already have this in settings
+EMAIL_HOST = '207.34.240.56'
+EMAIL_PORT = '587'
 
 
 
@@ -107,7 +110,7 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'django_extensions',
     'django_python3_ldap',
-   
+    'anymail',
 ]
 
 MIDDLEWARE = [
