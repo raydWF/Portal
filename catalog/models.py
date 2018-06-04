@@ -75,6 +75,7 @@ class KeyInstance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="Unique ID for this particular key")
 
     borrower = models.CharField(max_length=100, help_text="Enter the name of the borrower.",null=True,blank=True, verbose_name="Borrower",)
+    borrower_email = models.CharField(max_length=100, help_text='Enter the email address you would like to be notified on',null=True,blank=True, verbose_name="Borrower Email")
 
     class Meta:
         ordering = ["due_back"]

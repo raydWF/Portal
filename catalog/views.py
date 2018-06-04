@@ -212,6 +212,7 @@ def update_key_request(request, pk):
     key_inst=get_object_or_404(KeyInstance, pk=pk)
 
 
+
     # If this is a POST request then process the Form data
     if request.method == 'POST':
 
@@ -226,7 +227,7 @@ def update_key_request(request, pk):
             key_notes = form.cleaned_data['notes']
             email_subject = 'Key Request Response'
             sender_email = 'service@walterfedy.com'
-            #receiver_email = form.cleaned_data[]
+            receiver_email = request.user.email
             body_message = 'Sorry your key request has been denied. Here are the keynotes: ' + key_notes
             if request_status == 'a':
                 key_inst.due_back = due_date
@@ -244,7 +245,7 @@ def update_key_request(request, pk):
                     email_subject,
                     body_message,
                     sender_email,
-                    ['raywalterfedy@gmail.com'],
+                    [receiver_email],
                     fail_silently=False,
                 )
                 key_inst.save()
