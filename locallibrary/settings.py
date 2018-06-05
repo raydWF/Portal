@@ -17,8 +17,6 @@ import os
 #LDAP_AUTH_URL = "ldaps://172.20.200.30"
 LDAP_AUTH_URL = "ldaps://207.34.240.56:636"
 
-LDAP_AUTH_USE_TLS = True
-
 DEBUG = True
 
 # The username and password that's being used to connect to the LDAP server to query data.
