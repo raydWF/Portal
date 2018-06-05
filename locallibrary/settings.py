@@ -17,7 +17,7 @@ import os
 #LDAP_AUTH_URL = "ldaps://172.20.200.30"
 LDAP_AUTH_URL = "ldaps://207.34.240.56:636"
 
-USE_TLS = True
+LDAP_AUTH_USE_TLS = True
 
 DEBUG = True
 
