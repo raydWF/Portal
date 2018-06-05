@@ -95,8 +95,10 @@ class LoanedKeysByUserListView(LoginRequiredMixin,generic.ListView):
     model = KeyInstance
     template_name = 'catalog/roomkey_list_borrowed_user.html'
 
+
     def get_queryset(self):
-        return KeyInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+        name = self.request.user.first_name + ' ' + self.request.user.last_name
+        return KeyInstance.objects.filter(borrower=name).filter(status__exact='o').order_by('due_back')
 
 class LoanedKeysAllListView(PermissionRequiredMixin,generic.ListView):
     
@@ -232,12 +234,15 @@ def update_key_request(request, pk):
             receiver_email = key_inst.borrower_email
 
             if request_status == 'a':
+
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
                 key_inst.date_out = datetime.date.today()
                 key_inst.request_status = 'a'
                 key_inst.key_notes = key_notes
-                body_message = 'Greetings ' + key_inst.borrower + '.Your key request for' + key_inst.roomkey.room_name + ' has been approved. Here are the keynotes: ' + key_notes
+                key_inst.save()
+
+                body_message = 'Greetings ' + key_inst.borrower + '.Your key request for ' + key_inst.roomkey.room_name + ' has been approved. Here are the keynotes: ' + key_notes
                 html_message = loader.render_to_string(
                     'catalog/email_template.html',
                     {'body_message': body_message,
@@ -251,11 +256,13 @@ def update_key_request(request, pk):
                     fail_silently=False,
                     html_message=html_message
                 )
-                key_inst.save()
+
             else:
                 key_inst.status = 'a'
                 key_inst.request_status = 'd'
                 key_inst.key_notes = key_notes
+                key_inst.save()
+
                 body_message = 'Greetings ' + key_inst.borrower + '.Unfortunately your key request for ' + key_inst.roomkey.room_name + ' has been denied. Here are the keynotes: ' + key_notes
                 html_message = loader.render_to_string(
                     'catalog/email_template.html',
@@ -273,7 +280,7 @@ def update_key_request(request, pk):
                     html_message=html_message
                 )
 
-                key_inst.save()
+
 
             # redirect to a new URL:
             return HttpResponseRedirect(reverse('all-available-keys'))
@@ -343,7 +350,13 @@ class MaintenanceRequestDetailView(generic.DetailView):
 # view for creating maintenacne request
 class MaintenanceRequestCreate(CreateView):
     model = MaintenanceRequest
-    fields = ['requester', 'office', 'urgency', 'request_comments']
+    fields = ['office', 'urgency', 'request_comments']
+    names = get_list_or_404(User)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['names'] = self.names
+        return context
 
 class MaintenanceRequestUpdate(UpdateView):
     model = MaintenanceRequest

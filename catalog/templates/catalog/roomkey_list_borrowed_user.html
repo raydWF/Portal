@@ -7,9 +7,15 @@
 	{% if keyinstance_list %}
 	<ul>
 		{% for roomkey in keyinstance_list %}
+            {% if roomkey.is_overdue %}
 			<li>
-				<a href="{% url 'roomkey-detail' roomkey.roomkey.pk %}">{{ roomkey.roomkey }}</a> ({{ roomkey.due_back }}) --- ID: {{ roomkey.id }}
+				<a href="{% url 'roomkey-detail' roomkey.roomkey.pk %}" style="color: #cd0a0a"><b>{{ roomkey.roomkey }}</b></a> Due Date: ({{ roomkey.due_back }}) --- ID: {{ roomkey.id }}
 			</li>
+            {% else %}
+            <li>
+				<a href="{% url 'roomkey-detail' roomkey.roomkey.pk %}" ><b>{{ roomkey.roomkey }}</b></a> Due Date: ({{ roomkey.due_back }}) --- ID: {{ roomkey.id }}
+			</li>
+            {% endif %}
 		{% endfor %}
 	</ul>
 	{% else %}

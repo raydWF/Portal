@@ -37,7 +37,7 @@ class UpdateKeyRequestForm(forms.Form):
     due_date = forms.DateField(label='Due Date(If the request is approved)',
                                help_text='Enter a date (YYYY-MM-DD)(default 3). ')
 
-    notes = forms.CharField(label='Enter a brief note if you wish',widget=forms.Textarea)
+    notes = forms.CharField(label='Enter a brief note if you wish',widget=forms.Textarea, required=False)
 
 
 

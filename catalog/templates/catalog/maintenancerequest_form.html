@@ -1,6 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<style>
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+</style>
 
 
 <div class="container maintenance-container">
@@ -19,8 +28,40 @@
 		<div class="col-lg-12">
 				<form action="" method="post">
 				    {% csrf_token %}
-				    <table>
-				    {{ form.as_table }}
+                    <table>
+                        <tr>
+                            <th>Requester (start typing your <br />
+                                username once the dropdown is selected)</th>
+                            <td>
+                                <select name = 'name' required>
+                                {% for person in names %}
+                                    {% if person.first_name %}
+                                    <option value="{{ person.first_name }} {{person.last_name}}">{{ person.first_name }} {{ person.last_name }}</option>
+                                    {% else %}
+                                    <option value="{{ person }}">{{ person }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Office</th>
+                            <td>{{ form.office }}</td>
+                            </br>
+
+                        </tr>
+
+                        <tr>
+                            <th>Urgency</th>
+                            <td>{{ form.urgency }}</td>
+
+                        </tr>
+
+                        <tr>
+                            <th>Comments</th>
+                            <td>{{ form.request_comments }}</td>
+                        </tr>
 				    </table>
 				    <input type="submit" value="Submit" />
 				</form>
