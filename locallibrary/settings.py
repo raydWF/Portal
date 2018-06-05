@@ -34,9 +34,9 @@ AUTHENTICATION_BACKENDS = (
     'django_python3_ldap.auth.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-DEBUG = True
 
-#LDAP_AUTH_USE_TLS = False
+
+
 
 
 # User model fields mapped to the LDAP
@@ -74,23 +74,13 @@ LOGGING = {
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'f8bt830rq(a)z970*9a+l4ryq#4f@on*w#b-h782qogplwi0x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# ANYMAIL = {
-#     # (exact settings here depend on your ESP...)
-#     "MAILGUN_API_KEY": "pubkey-a5a1eff74626a7c40573440bf17d5d89",
-#     "MAILGUN_SENDER_DOMAIN": 'sandboxfe61ab6d0c29495c9aa4dcf470890409.mailgun.org',  # your Mailgun domain, if needed
-# }
-# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"  # or sendgrid.EmailBackend, or...
-# DEFAULT_FROM_EMAIL = "noreply@walterfedy.com"  # if you don't already have this in settings
 EMAIL_HOST = '207.34.240.56'
 EMAIL_PORT = '587'
 
@@ -143,31 +133,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 
-# Database
-#
-#
-# if 'RDS_DB_NAME' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': os.environ['RDS_DB_NAME'],
-#             'USER': os.environ['RDS_USERNAME'],
-#             'PASSWORD': os.environ['RDS_PASSWORD'],
-#             'HOST': os.environ['RDS_HOSTNAME'],
-#             'PORT': os.environ['RDS_PORT'],
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'db1',
-#             'USER': 'rdeng',
-#             'PASSWORD': 'walterfedy',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
+
 
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {

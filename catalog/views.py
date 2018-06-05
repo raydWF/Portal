@@ -18,6 +18,7 @@ from django.forms.formsets import formset_factory
 from django.db.models import Count, Case, When, CharField
 from django.views.generic.edit import ProcessFormView
 from django.core.mail import send_mail
+from django.template import loader
 
 
 
@@ -191,6 +192,7 @@ def submit_key_request(request, pk):
         key_inst.status = 'r'
         key_inst.date_requested = datetime.date.today()
         key_inst.borrower = name
+        key_inst.borrower_email = request.user.email
         key_inst.save()
 
         return HttpResponseRedirect(reverse('all-available-keys') )
@@ -227,19 +229,40 @@ def update_key_request(request, pk):
             key_notes = form.cleaned_data['notes']
             email_subject = 'Key Request Response'
             sender_email = 'service@walterfedy.com'
-            receiver_email = request.user.email
-            body_message = 'Sorry your key request has been denied. Here are the keynotes: ' + key_notes
+            receiver_email = key_inst.borrower_email
+
             if request_status == 'a':
                 key_inst.due_back = due_date
                 key_inst.status = 'o'
                 key_inst.date_out = datetime.date.today()
                 key_inst.request_status = 'a'
                 key_inst.key_notes = key_notes
+                body_message = 'Greetings ' + key_inst.borrower + '.Your key request for' + key_inst.roomkey.room_name + ' has been approved. Here are the keynotes: ' + key_notes
+                html_message = loader.render_to_string(
+                    'catalog/email_template.html',
+                    {'body_message': body_message,
+                     'user': key_inst.borrower},
+                )
+                send_mail(
+                    email_subject,
+                    body_message,
+                    sender_email,
+                    [receiver_email],
+                    fail_silently=False,
+                    html_message=html_message
+                )
                 key_inst.save()
             else:
                 key_inst.status = 'a'
                 key_inst.request_status = 'd'
                 key_inst.key_notes = key_notes
+                body_message = 'Greetings ' + key_inst.borrower + '.Unfortunately your key request for ' + key_inst.roomkey.room_name + ' has been denied. Here are the keynotes: ' + key_notes
+                html_message = loader.render_to_string(
+                    'catalog/email_template.html',
+                    {'body_message' : body_message,
+                     'user': key_inst.borrower},
+                )
+
 
                 send_mail(
                     email_subject,
@@ -247,7 +270,9 @@ def update_key_request(request, pk):
                     sender_email,
                     [receiver_email],
                     fail_silently=False,
+                    html_message=html_message
                 )
+
                 key_inst.save()
 
             # redirect to a new URL:
