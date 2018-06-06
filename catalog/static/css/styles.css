@@ -257,23 +257,23 @@ button{
 }
 
 .bgreen {
-	border-left: 6px solid DarkSeaGreen;
+	border-left: 6px solid rgb(205,92,92);
 }
 
 .byellow {
-	border-left: 6px solid rgb(246, 209, 85);
+	border-left: 6px solid rgb(205,92,92);
 }
 
 .bblue {
-	border-left: 6px solid rgb(87, 140, 169);
+	border-left: 6px solid rgb(205,92,92);
 }
 
 .bred {
-	border-left: 6px solid rgb(236, 151, 135);
+	border-left: 6px solid rgb(205,92,92);
 }
 
 .bdblue {
-	border-left: 6px solid rgb(188, 112, 164);
+	border-left: 6px solid rgb(205,92,92);
 }
 
 .maintenance-title {
@@ -357,7 +357,7 @@ button{
 
 .content-title h3{
 	width: 100%;
-	background-color: rgb(188, 112, 164); 
+	background-color: rgb(205,92,92);
 	color: white;
 	font-family: 'Raleway', sans-serif;
 	text-align: center;

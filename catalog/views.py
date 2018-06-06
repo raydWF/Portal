@@ -19,6 +19,7 @@ from django.db.models import Count, Case, When, CharField
 from django.views.generic.edit import ProcessFormView
 from django.core.mail import send_mail
 from django.template import loader
+from django.views.generic.edit import FormView
 
 
 
@@ -330,6 +331,8 @@ class MaintenanceRequestListView(LoginRequiredMixin,generic.ListView):
     model = MaintenanceRequest
     template_name = 'catalog/maintenancerequest_list.html'
 
+
+
     def get_queryset(self):
         return MaintenanceRequest.objects.order_by('urgency', 'status')
 
@@ -348,15 +351,31 @@ class MaintenanceRequestDetailView(generic.DetailView):
     model = MaintenanceRequest
 
 # view for creating maintenacne request
-class MaintenanceRequestCreate(CreateView):
+class MaintenanceRequestCreate(FormView):
     model = MaintenanceRequest
-    fields = ['office', 'urgency', 'request_comments']
+    template_name = 'catalog/maintenancerequest_form.html'
+    form_class = MaintenanceForm
     names = get_list_or_404(User)
+
+    def get_success_url(self):
+        return reverse('maintenance-home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['names'] = self.names
         return context
+
+    def form_valid(self, form):
+        maintenance_request = MaintenanceRequest.objects.create()
+        user_obj = get_object_or_404(User, username = self.request.POST['name'])
+        maintenance_request.requester = user_obj
+        maintenance_request.date_requested = datetime.date.today()
+        maintenance_request.urgency = form.cleaned_data['urgency']
+        maintenance_request.request_comments = form.cleaned_data['request_comments']
+        maintenance_request.office = form.cleaned_data['office']
+        maintenance_request.save()
+        return super().form_valid(form)
+
 
 class MaintenanceRequestUpdate(UpdateView):
     model = MaintenanceRequest

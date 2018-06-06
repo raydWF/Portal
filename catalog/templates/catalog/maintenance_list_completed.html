@@ -38,7 +38,7 @@
           <td>{{ request.get_office_display }}</td>
           <td>{{ request.date_submitted }}</td>
           <td>{{ request.request_comments|truncatechars:38 }}</td>
-          <td>{{ request.requester }}</td>  
+          <td>{{ request.requester.get_full_name }}</td>
           <td><a href="{{ request.get_absolute_url }}">See more</a></td>   
       </tr>
        

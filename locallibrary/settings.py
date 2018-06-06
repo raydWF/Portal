@@ -14,8 +14,8 @@ import os
 
 
 # Baseline configuration.
-#LDAP_AUTH_URL = "ldaps://172.20.200.30"
-LDAP_AUTH_URL = "ldaps://207.34.240.56:636"
+LDAP_AUTH_URL = "ldaps://172.20.200.30"
+#LDAP_AUTH_URL = "ldaps://207.34.240.56:636"
 
 DEBUG = True
 

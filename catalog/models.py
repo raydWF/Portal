@@ -5,6 +5,8 @@ from datetime import date
 from datetime import timedelta
 import uuid # Required for unique book instances
 from django.utils.deconstruct import deconstructible
+
+
 # Create your models here.
 @deconstructible
 class RoomKey(models.Model):

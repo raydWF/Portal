@@ -96,6 +96,23 @@ class UpdateKeyForm(forms.Form):
         if data:
             return data
 
+#====================================================================== Maintenance Forms ===================================================================
+class MaintenanceForm(forms.ModelForm):
+    class Meta:
+        model = MaintenanceRequest
+        exclude = ('requester', 'status', 'date_submitted', 'date_completed')
+
+
+
+
+
+
+
+
+
+
+
+
 #====================================================================== Move Forms ===================================================================
 class MoveForm(forms.Form):
     move_person = forms.CharField(
